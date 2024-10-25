@@ -3,27 +3,16 @@ const router = express.Router();
 const db = require('../db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-// Token generation function
-const generateToken = (userId, isAdmin = false) => {
-    const payload = { id: userId, isAdmin };
+const generateToken = (userId) => {
+    const payload = { id: userId };
     const secret = process.env.JWT_SECRET;
     const options = { expiresIn: '1h' };
     return jwt.sign(payload, secret, options);
 };
 
-// Middleware untuk autentikasi token
-const authenticateToken = (req, res, next) => {
-    const token = req.headers['authorization']?.split(' ')[1];
 
-    if (!token) return res.sendStatus(401); // Jika tidak ada token, kirim 401 Unauthorized
-
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403); // Jika token tidak valid, kirim 403 Forbidden
-        req.user = user; // Simpan informasi pengguna di request
-        next(); // Lanjutkan ke rute berikutnya
-    });
-};
 
 // Rute untuk login
 router.post('/login', async (req, res) => {
@@ -42,11 +31,10 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ error: 'Invalid username or password' });
         }
 
-        const isAdmin = user.username === 'admin'; // Ganti dengan logika Anda sendiri untuk menentukan admin
-        const token = generateToken(user.id, isAdmin);
+        const token = generateToken(user.id); // Hanya menggunakan ID pengguna
         res.json({ token });
     } catch (error) {
-        console.error('Error logging in :', error);
+        console.error('Error logging in:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
@@ -67,20 +55,16 @@ router.post('/signup', async (req, res) => {
 
         // Check if the insert was successful
         if (result.affectedRows > 0) {
-            console.log('User inserted with ID:', result.insertId);
+            console.log('User  inserted with ID:', result.insertId);
             const token = generateToken(result.insertId);
             res.json({ token });
         } else {
-            res.status(400).json({ error: 'User could not be created' });
+            res.status(400).json({ error: 'User  could not be created' });
         }
     } catch (error) {
         console.error('Error during signup:', error);
         res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
-});
-
-router.get('/protected', authenticateToken, (req, res) => {
-    res.json({ message: 'This is a protected route', user: req.user });
 });
 
 module.exports = router;

@@ -51,7 +51,6 @@ router.post('/income',
     }
 );
 
-// Rute untuk menambah pengeluaran
 router.post('/expense',
     authenticateToken,
     [
@@ -66,6 +65,7 @@ router.post('/expense',
 
         const { total, catatan } = req.body;
         const id_pengguna = req.user.id; // Mengambil id pengguna dari token
+        console.log('ID Pengguna:', id_pengguna); // Log ID pengguna
 
         try {
             const [result] = await db.query(
@@ -84,5 +84,4 @@ router.post('/expense',
         }
     }
 );
-
 module.exports = router;

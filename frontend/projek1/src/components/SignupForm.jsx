@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import userService from '../services/userService';
 
 const SignupForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const history = useHistory();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (!username || !password) {
+            setError('Username and password are required');
+            return;
+        }
+        setLoading(true);
         try {
             const response = await userService.signup(username, password);
-            // Simpan token ke localStorage
             localStorage.setItem('token', response.token);
-            // Redirect ke halaman stok ikan
-            window.location.href = '/stok-ikan';
+            history.push('/stok-ikan');
         } catch (error) {
-            setError(error.message);
+            if (error.response && error.response.data) {
+                setError(error.response.data.error || 'Signup failed');
+            } else {
+                setError('An unexpected error occurred');
+            }
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -27,8 +39,9 @@ const SignupForm = () => {
             <label>Password:</label>
             <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
             <br />
-            <button type="submit">Signup</button>
+            <button type="submit" disabled={loading}>Signup</button>
             {error && <div style={{ color: 'red' }}>{error}</div>}
+            {loading && <div>Loading...</div>}
         </form>
     );
 };

@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
@@ -30,8 +31,10 @@ fun Header() {
     var nama = "Hanif"
 
     val customFontFamily = FontFamily(
-        Font(R.font.bold, FontWeight.Bold)
+        Font(R.font.bold, FontWeight.Bold),
+        Font(R.font.regular, FontWeight.Normal)
     )
+
 
     Box(
         modifier = Modifier
@@ -78,9 +81,10 @@ fun Header() {
 
                 Text(
                     text = sambutan,
-                    fontSize = 30.sp,
+                    fontSize = 25.sp,
                     fontFamily = customFontFamily,
-                    color = Color.White
+                    color = Color.White,
+                    fontWeight = FontWeight.Normal
                 )
 
                 Text(
@@ -88,15 +92,16 @@ fun Header() {
                     fontSize = 40.sp,
                     fontFamily = customFontFamily,
                     color = Color.White,
-                    modifier = Modifier.padding(top = 5.dp, bottom = 25.dp)
+                    modifier = Modifier.padding(top = 5.dp, bottom = 25.dp),
+                    fontWeight = FontWeight.Bold
                 )
             }
 
             Image(
                 painter = painterResource(R.drawable.bapak),
                 contentDescription = null,
-                modifier = Modifier.size(100.dp)
-                    .size(40.dp)
+                modifier = Modifier.scale(1.5f).padding(bottom = 20.dp, end = 13.dp)
+
             )
         }
     }

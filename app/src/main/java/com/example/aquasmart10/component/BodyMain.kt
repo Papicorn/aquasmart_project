@@ -6,11 +6,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -50,7 +52,7 @@ fun BodyMain() {
     ) {
         LazyColumn(
             modifier = Modifier
-                .padding(20.dp)
+                .padding(top = 20.dp, start = 20.dp, end = 20.dp)
         ) {
             item {
                 Row(
@@ -63,9 +65,14 @@ fun BodyMain() {
                     Card(
                         modifier = Modifier
                             .weight(1f)
-                            .padding(end = 4.dp),
+                            .padding(end = 4.dp)
+                            .shadow(
+                                elevation = 12.dp, // Tinggi bayangan
+                                ambientColor = Color.Black.copy(alpha = 0.2f), // Warna bayangan ambient
+                                spotColor = Color.Black.copy(alpha = 0.5f) // Warna bayangan spot
+                            ),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Box(
                             modifier = Modifier
@@ -74,18 +81,20 @@ fun BodyMain() {
                             contentAlignment = Alignment.Center
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.img_3),
-                                    contentDescription = "Ikon Stok Ikan",
-                                    modifier = Modifier.size(24.dp)
-                                )
-                                Text(
-                                    text = "Stok Ikan",
-                                    fontFamily = customFontFamily,
-                                    fontSize = 20.sp,
-                                    color = Color.Black,
-                                    modifier = Modifier.padding(bottom = 8.dp)
-                                )
+                                Row {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.img_3),
+                                        contentDescription = "Ikon Stok Ikan",
+                                        modifier = Modifier.size(24.dp).padding(end = 6.dp)
+                                    )
+                                    Text(
+                                        text = "Stok Ikan",
+                                        fontFamily = customFontFamily,
+                                        fontSize = 20.sp,
+                                        color = Color.Black,
+                                        modifier = Modifier.padding(bottom = 8.dp)
+                                    )
+                                }
                                 Text(
                                     text = "10.000",
                                     fontSize = 30.sp,
@@ -95,14 +104,19 @@ fun BodyMain() {
                             }
                         }
                     }
-
+                    Spacer(modifier = Modifier.width(16.dp))
                     // Card 2
                     Card(
                         modifier = Modifier
                             .weight(1f)
-                            .padding(end = 4.dp),
+                            .padding(end = 4.dp)
+                            .shadow(
+                                elevation = 12.dp, // Tinggi bayangan
+                                ambientColor = Color.Black.copy(alpha = 0.2f), // Warna bayangan ambient
+                                spotColor = Color.Black.copy(alpha = 0.5f) // Warna bayangan spot
+                            ),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Box(
                             modifier = Modifier
@@ -145,9 +159,14 @@ fun BodyMain() {
                     Card(
                         modifier = Modifier
                             .weight(1f)
-                            .padding(end = 4.dp),
+                            .padding(end = 4.dp)
+                            .shadow(
+                                elevation = 12.dp, // Tinggi bayangan
+                                ambientColor = Color.Black.copy(alpha = 0.2f), // Warna bayangan ambient
+                                spotColor = Color.Black.copy(alpha = 0.5f) // Warna bayangan spot
+                            ),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Box(
                             modifier = Modifier
@@ -156,18 +175,20 @@ fun BodyMain() {
                             contentAlignment = Alignment.Center
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.img_2),
-                                    contentDescription = "Ikon Pakan",
-                                    modifier = Modifier.size(24.dp)
-                                )
-                                Text(
-                                    text = "Pakan",
-                                    fontSize = 20.sp,
-                                    fontFamily = customFontFamily,
-                                    color = Color.Black,
-                                    modifier = Modifier.padding(bottom = 8.dp)
-                                )
+                                Row {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.img_2),
+                                        contentDescription = "Ikon Pakan",
+                                        modifier = Modifier.size(24.dp).padding(end = 6.dp)
+                                    )
+                                    Text(
+                                        text = "Pakan",
+                                        fontSize = 20.sp,
+                                        fontFamily = customFontFamily,
+                                        color = Color.Black,
+                                        modifier = Modifier.padding(bottom = 8.dp)
+                                    )
+                                }
                                 Text(
                                     text = "9 Kg",
                                     fontSize = 30.sp,
@@ -177,14 +198,19 @@ fun BodyMain() {
                             }
                         }
                     }
-
+                    Spacer(modifier = Modifier.width(16.dp))
                     // Card 4
                     Card(
                         modifier = Modifier
                             .weight(1f)
-                            .padding(end = 4.dp),
+                            .padding(end = 4.dp)
+                            .shadow(
+                                elevation = 12.dp, // Tinggi bayangan
+                                ambientColor = Color.Black.copy(alpha = 0.2f), // Warna bayangan ambient
+                                spotColor = Color.Black.copy(alpha = 0.5f) // Warna bayangan spot
+                            ),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Box(
                             modifier = Modifier
@@ -193,18 +219,20 @@ fun BodyMain() {
                             contentAlignment = Alignment.Center
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.img_4), // Sesuaikan id drawable
-                                    contentDescription = "Ikon Card 4",
-                                    modifier = Modifier.size(24.dp)
-                                )
-                                Text(
-                                    text = "Notifikasi",
-                                    fontSize = 20.sp,
-                                    fontFamily = customFontFamily,
-                                    color = Color.Black,
-                                    modifier = Modifier.padding(bottom = 8.dp)
-                                )
+                                Row {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.img_4), // Sesuaikan id drawable
+                                        contentDescription = "Ikon Card 4",
+                                        modifier = Modifier.size(24.dp).padding(end = 6.dp)
+                                    )
+                                    Text(
+                                        text = "Notifikasi",
+                                        fontSize = 20.sp,
+                                        fontFamily = customFontFamily,
+                                        color = Color.Black,
+                                        modifier = Modifier.padding(bottom = 8.dp)
+                                    )
+                                }
                                 Text(
                                     text = "3",
                                     fontSize = 30.sp,

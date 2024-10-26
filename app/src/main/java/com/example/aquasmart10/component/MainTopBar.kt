@@ -20,7 +20,7 @@ fun MainTopBar(modifier: Modifier = Modifier) {
         Column (
                 modifier = Modifier
                         .fillMaxWidth(),
-                horizontalAlignment = Alignment.
+
         ){
                 Row {
                         Image(

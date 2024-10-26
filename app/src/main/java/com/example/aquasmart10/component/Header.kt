@@ -26,7 +26,7 @@ data class HeaderIcon(
 @Composable
 fun Header() {
     var isClicked by remember { mutableStateOf(false) }
-    val sambutan = "Selamat Datang"
+    val sambutan = "Selamat Datang,"
     var nama = "Hanif"
 
     val customFontFamily = FontFamily(

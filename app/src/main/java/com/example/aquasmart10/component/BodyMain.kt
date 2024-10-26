@@ -35,7 +35,6 @@ import com.example.aquasmart10.R
 val customFontFamily = FontFamily(
     Font(R.font.bold, FontWeight.Bold)
 )
-
 @Composable
 fun BodyMain() {
     Column(
@@ -51,19 +50,20 @@ fun BodyMain() {
     ) {
         LazyColumn(
             modifier = Modifier
-                .padding(10.dp)
+                .padding(20.dp)
         ) {
-            items(1) { index ->
+            item {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween // Mengatur jarak antar Card
+                        .padding(vertical = 10.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
+                    // Card 1
                     Card(
                         modifier = Modifier
-                            .weight(1f) // Membuat card mengisi ruang yang tersedia
-                            .padding(end = 4.dp), // Padding antara card
+                            .weight(1f)
+                            .padding(end = 4.dp),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                     ) {
@@ -75,16 +75,16 @@ fun BodyMain() {
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.stokikan), // Ganti dengan id drawable kamu
+                                    painter = painterResource(id = R.drawable.img_3),
                                     contentDescription = "Ikon Stok Ikan",
-                                    modifier = Modifier.size(24.dp) // Ukuran ikon
+                                    modifier = Modifier.size(24.dp)
                                 )
                                 Text(
                                     text = "Stok Ikan",
                                     fontFamily = customFontFamily,
                                     fontSize = 20.sp,
                                     color = Color.Black,
-                                    modifier = Modifier.padding(bottom = 8.dp) // Padding bawah untuk jarak
+                                    modifier = Modifier.padding(bottom = 8.dp)
                                 )
                                 Text(
                                     text = "10.000",
@@ -96,11 +96,11 @@ fun BodyMain() {
                         }
                     }
 
-
+                    // Card 2
                     Card(
                         modifier = Modifier
-                            .weight(1f) // Membuat card mengisi ruang yang tersedia
-                            .padding(end = 4.dp), // Padding antara card
+                            .weight(1f)
+                            .padding(end = 4.dp),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                     ) {
@@ -111,15 +111,178 @@ fun BodyMain() {
                             contentAlignment = Alignment.Center
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text(
-                                    text = "Card ${index * 2 + 1}",
-                                    fontSize = 20.sp,
-                                    color = Color.Black,
-                                    modifier = Modifier.padding(bottom = 8.dp) // Padding bawah untuk jarak
+                                Image(
+                                    painter = painterResource(id = R.drawable.img),
+                                    contentDescription = "Ikon Total Kolam",
+                                    modifier = Modifier.size(24.dp)
                                 )
                                 Text(
-                                    text = "10.000",
+                                    text = "Total Kolam",
+                                    fontSize = 20.sp,
+                                    fontFamily = customFontFamily,
+                                    color = Color.Black,
+                                    modifier = Modifier.padding(bottom = 8.dp)
+                                )
+                                Text(
+                                    text = "25",
                                     fontSize = 30.sp,
+                                    fontFamily = customFontFamily,
+                                    color = Color.Blue
+                                )
+                            }
+                        }
+                    }
+                }
+
+                // Card 3
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    // Card 3
+                    Card(
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(end = 4.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color.White),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.img_2),
+                                    contentDescription = "Ikon Pakan",
+                                    modifier = Modifier.size(24.dp)
+                                )
+                                Text(
+                                    text = "Pakan",
+                                    fontSize = 20.sp,
+                                    fontFamily = customFontFamily,
+                                    color = Color.Black,
+                                    modifier = Modifier.padding(bottom = 8.dp)
+                                )
+                                Text(
+                                    text = "9 Kg",
+                                    fontSize = 30.sp,
+                                    fontFamily = customFontFamily,
+                                    color = Color.Blue
+                                )
+                            }
+                        }
+                    }
+
+                    // Card 4
+                    Card(
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(end = 4.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color.White),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.img_4), // Sesuaikan id drawable
+                                    contentDescription = "Ikon Card 4",
+                                    modifier = Modifier.size(24.dp)
+                                )
+                                Text(
+                                    text = "Notifikasi",
+                                    fontSize = 20.sp,
+                                    fontFamily = customFontFamily,
+                                    color = Color.Black,
+                                    modifier = Modifier.padding(bottom = 8.dp)
+                                )
+                                Text(
+                                    text = "3",
+                                    fontSize = 30.sp,
+                                    fontFamily = customFontFamily,
+                                    color = Color.Blue
+                                )
+                            }
+                        }
+                    }
+                }
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 10.dp) // Jarak antar Card di atas dan bawah
+                ) {
+                    // Card 5
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 10.dp), // Jarak bawah antara Card 5 dan Card 6
+                        colors = CardDefaults.cardColors(containerColor = Color.White),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(20.dp),
+                            contentAlignment = Alignment.TopStart
+                        ) {
+                            Column {
+                                Text(
+                                    text = "Pengingat Terdekat",
+                                    fontSize = 20.sp,
+                                    fontFamily = customFontFamily,
+                                    color = Color.Black,
+                                    modifier = Modifier.padding(bottom = 8.dp)
+                                )
+                                Text(
+                                    text = "Senin",
+                                    fontSize = 20.sp,
+                                    color = Color.Black,
+                                    modifier = Modifier.padding(bottom = 8.dp)
+                                )
+                                }
+                            }
+                        }
+                    }
+
+                    // Card 6
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        colors = CardDefaults.cardColors(containerColor = Color.White),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(20.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.img_2),
+                                    contentDescription = "Ikon Pakan",
+                                    modifier = Modifier.size(24.dp)
+                                )
+                                Text(
+                                    text = "Pakan",
+                                    fontSize = 20.sp,
+                                    fontFamily = customFontFamily,
+                                    color = Color.Black,
+                                    modifier = Modifier.padding(bottom = 8.dp)
+                                )
+                                Text(
+                                    text = "9 Kg",
+                                    fontSize = 30.sp,
+                                    fontFamily = customFontFamily,
                                     color = Color.Blue
                                 )
                             }
@@ -129,5 +292,7 @@ fun BodyMain() {
             }
         }
     }
-}
+
+
+
 

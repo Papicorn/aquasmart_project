@@ -15,7 +15,7 @@ const generateToken = (userId) => {
 
 
 // Rute untuk login
-router.post('/login', async (req, res) => {
+router.post('/login/admin', async (req, res) => {
     const { username, password } = req.body;
 
     try {
@@ -31,7 +31,12 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ error: 'Invalid username or password' });
         }
 
-        const token = generateToken(user.id); // Hanya menggunakan ID pengguna
+        // Cek apakah role adalah 'admin'
+        if (user.role !== 'admin') {
+            return res.status(403).json({ error: 'Access denied. Only admin users can log in.' });
+        }
+
+        const token = generateToken(user.id);
         res.json({ token });
     } catch (error) {
         console.error('Error logging in:', error);
@@ -41,19 +46,24 @@ router.post('/login', async (req, res) => {
 
 // Rute untuk signup
 router.post('/signup', async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, role } = req.body;
 
     try {
-        // Hash the password before storing it
+
+        if (role !== 'admin' && role !== 'pekerja') {
+            return res.status(400).json({ error: 'Role must be either admin or pekerja' });
+        }
+
+
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Execute the insert query
-        const [result] = await db.query(`INSERT INTO pengguna (username, password) VALUES (?, ?)`, [username, hashedPassword]);
 
-        // Log the result of the insert operation
+        const [result] = await db.query(`INSERT INTO pengguna (username, password, role) VALUES (?, ?, ?)`, [username, hashedPassword, role]);
+
+
         console.log('Insert Result:', result);
 
-        // Check if the insert was successful
+
         if (result.affectedRows > 0) {
             console.log('User  inserted with ID:', result.insertId);
             const token = generateToken(result.insertId);
@@ -66,5 +76,4 @@ router.post('/signup', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
 });
-
 module.exports = router;

@@ -19,7 +19,7 @@ const LoginForm = () => {
         setLoading(true);
         try {
             // Mengirim permintaan login ke server
-            const response = await axios.post('/api/login', {
+            const response = await axios.post('/api/users/login', {
                 username: username,
                 password: password
             });

@@ -54,7 +54,6 @@ class BerandaActivity : ComponentActivity() {
         }
     }
 }
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable

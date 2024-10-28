@@ -19,6 +19,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.aquasmart10.component.BodyMain
 import com.example.aquasmart10.component.BottomNavigationBar
 import com.example.aquasmart10.component.Header
@@ -28,6 +29,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 class BerandaActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         setContent {
             AquaSmart10Theme {
                 // A surface container using the 'background' color from the theme

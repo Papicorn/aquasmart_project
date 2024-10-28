@@ -100,7 +100,7 @@ fun Header() {
             Image(
                 painter = painterResource(R.drawable.bapak),
                 contentDescription = null,
-                modifier = Modifier.scale(1.5f).padding(bottom = 20.dp, end = 13.dp)
+                modifier = Modifier.scale(1.7f).padding(bottom = 20.dp, end = 13.dp)
 
             )
         }

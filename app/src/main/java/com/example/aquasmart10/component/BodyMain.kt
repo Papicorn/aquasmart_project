@@ -20,6 +20,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,6 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aquasmart10.R
@@ -103,7 +105,7 @@ fun BodyMain() {
                                 Text(
                                     text = "10.000",
                                     fontSize = 30.sp,
-                                    color = Color.Blue,
+                                    color = Color(0xFF5E7BF9),
                                     fontFamily = customFontFamily
                                 )
                             }
@@ -133,7 +135,7 @@ fun BodyMain() {
                                 Row {
                                     Image(
                                         painter = painterResource(id = R.drawable.img),
-                                        contentDescription = "Ikon Stok Ikan",
+                                        contentDescription = "Kolam",
                                         modifier = Modifier
                                             .size(24.dp)
                                             .padding(end = 6.dp)
@@ -149,14 +151,13 @@ fun BodyMain() {
                                 Text(
                                     text = "3",
                                     fontSize = 30.sp,
-                                    color = Color.Blue,
+                                    color = Color(0xFF5E7BF9),
                                     fontFamily = customFontFamily
                                 )
                             }
                         }
                     }
                 }
-
                 // Card 3
                 Row(
                     modifier = Modifier
@@ -186,7 +187,7 @@ fun BodyMain() {
                                 Row {
                                     Image(
                                         painter = painterResource(id = R.drawable.img_2),
-                                        contentDescription = "Ikon Pakan",
+                                        contentDescription = "Pakan",
                                         modifier = Modifier
                                             .size(24.dp)
                                             .padding(end = 6.dp)
@@ -203,7 +204,7 @@ fun BodyMain() {
                                     text = "9 Kg",
                                     fontSize = 30.sp,
                                     fontFamily = customFontFamily,
-                                    color = Color.Blue
+                                    color = Color(0xFF5E7BF9)
                                 )
                             }
                         }
@@ -232,7 +233,7 @@ fun BodyMain() {
                                 Row {
                                     Image(
                                         painter = painterResource(id = R.drawable.img_4),
-                                        contentDescription = "Ikon Card 4",
+                                        contentDescription = "Notif",
                                         modifier = Modifier
                                             .size(24.dp)
                                             .padding(end = 6.dp)
@@ -249,7 +250,7 @@ fun BodyMain() {
                                     text = "3",
                                     fontSize = 30.sp,
                                     fontFamily = customFontFamily,
-                                    color = Color.Blue
+                                    color = Color(0xFF5E7BF9)
                                 )
                             }
                         }
@@ -260,6 +261,7 @@ fun BodyMain() {
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .height(400.dp)
                         .padding(vertical = 10.dp),
                     colors = CardDefaults.cardColors(containerColor = Color.White),
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
@@ -267,6 +269,7 @@ fun BodyMain() {
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
+                            .fillMaxHeight()
                             .padding(20.dp),
                         contentAlignment = Alignment.TopStart
                     ) {
@@ -279,16 +282,70 @@ fun BodyMain() {
                                 modifier = Modifier.padding(bottom = 8.dp)
                             )
                             Text(
-                                text = "Senin",
+                                text = "Hari ini",
                                 fontSize = 20.sp,
                                 color = Color.Black,
                                 modifier = Modifier.padding(bottom = 8.dp)
                             )
+                            LazyColumn (
+                                verticalArrangement = Arrangement.spacedBy(12.dp),
+                                modifier = Modifier.fillMaxWidth()
+                            ){
+                                //Card pengingat terdekat
+                                item {
+                                    Card(
+                                        colors = CardDefaults.cardColors(
+                                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                        ),
+                                        modifier = Modifier
+                                            .size(width = 350.dp, height = 50.dp)
+                                    ) {
+                                        Row(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(horizontal = 15.dp, vertical = 15.dp),
+                                            horizontalArrangement = Arrangement.SpaceBetween,
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+                                            Text(
+                                                text = "Beri pakan Kolam A1",
+                                            )
+                                            Text(
+                                                text = "08.00 WIB",
+                                            )
+                                        }
+                                    }
+                                }
+                                // Loop 5 card pengingat terdekat
+                                items (5) { index ->
+                                    Card(
+                                        colors = CardDefaults.cardColors(
+                                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                        ),
+                                        modifier = Modifier
+                                            .size(width = 350.dp, height = 50.dp)
+                                    ) {
+                                        Row(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(horizontal = 15.dp, vertical = 15.dp),
+                                            horizontalArrangement = Arrangement.SpaceBetween,
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+                                            Text(
+                                                text = "Panen kolam A5",
+                                            )
+                                            Text(
+                                                text = "08.00 WIB",
+                                            )
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-
-                // Card 6 dengan Gallery
+                // Card 6 (Dokumentasi)
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()

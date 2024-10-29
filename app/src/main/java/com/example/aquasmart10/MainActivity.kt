@@ -1,37 +1,52 @@
 package com.example.aquasmart10
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.aquasmart10.ui.theme.AquaSmart10Theme
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition  // Tambahkan import ini
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
-@Composable
-fun MainTopBar(modifier: Modifier = Modifier) {
-    Column {
-        Row {
-            Image(
-                painter = painterResource(R.drawable.img_background),
-                contentDescription = "Background"
-            )
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        actionBar?.hide()
+        installSplashScreen()
+        setContent {
+            val navController = rememberNavController()
+            NavHost(
+                navController = navController,
+                startDestination = Routes.BerandaActivity,
+                enterTransition = { EnterTransition.None },
+                exitTransition = { ExitTransition.None }
+            ) {
+                composable(
+                    route = Routes.BerandaActivity,
+                    enterTransition = { EnterTransition.None },
+                    exitTransition = { ExitTransition.None }
+                ) {
+                    BerandaActivity(navController)
+                }
+                composable(
+                    route = Routes.KelolaActivity,
+                    enterTransition = { EnterTransition.None },
+                    exitTransition = { ExitTransition.None }
+                ) {
+                    KelolaActivity(navController)
+                }
+                composable(
+                    route = Routes.BerandaActivity,
+                    enterTransition = { EnterTransition.None },
+                    exitTransition = { ExitTransition.None }
+                ) {
+                    BerandaActivity(navController)
+                }
+            }
         }
-    }
-}
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AquaSmart10Theme {
-        MainTopBar()
     }
 }

@@ -23,32 +23,40 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.aquasmart10.R
+import com.example.aquasmart10.Routes
 
-
+@Composable
+fun NavbarBottom(navController: NavController){
+    BottomNavigationBar(navController)
+}
 data class BottomNavigation(
     val title: String,
-    val iconRes: Int
+    val iconRes: Int,
+    val route: String
 )
 
 val items = listOf(
     BottomNavigation(
         title = "Beranda",
-        iconRes = R.drawable.home
+        iconRes = R.drawable.home,
+        route = Routes.BerandaActivity
     ),
     BottomNavigation(
         title = "Kelola",
-        iconRes = R.drawable.kelola
+        iconRes = R.drawable.kelola,
+        route = Routes.KelolaActivity
     ),
     BottomNavigation(
         title = "Profile",
-        iconRes = R.drawable.profile
+        iconRes = R.drawable.profile,
+        route = Routes.BerandaActivity
     )
 )
-
-@Preview
 @Composable
-fun BottomNavigationBar() {
+fun BottomNavigationBar(navController: NavController) {
 
     val customFontFamily = FontFamily(
         Font(R.font.bold, FontWeight.Bold)
@@ -62,7 +70,9 @@ fun BottomNavigationBar() {
             items.forEachIndexed { index, item ->
                 NavigationBarItem(
                     selected = index == 0,
-                    onClick = {},
+                    onClick = {
+                        navController.navigate(item.route)
+                    },
                     icon = {
                         Icon(
                             painter = painterResource(id = item.iconRes),

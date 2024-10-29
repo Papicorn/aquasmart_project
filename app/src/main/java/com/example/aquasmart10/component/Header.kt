@@ -96,7 +96,6 @@ fun Header() {
                     fontWeight = FontWeight.Bold
                 )
             }
-
             Image(
                 painter = painterResource(R.drawable.bapak),
                 contentDescription = null,

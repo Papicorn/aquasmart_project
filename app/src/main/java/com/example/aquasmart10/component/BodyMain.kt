@@ -38,12 +38,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aquasmart10.R
 
-val customFontFamily = FontFamily(
-    Font(R.font.bold, FontWeight.Bold)
-)
-
 @Composable
 fun BodyMain() {
+    val customFontFamily = FontFamily(
+        Font(R.font.bold, FontWeight.Bold)
+    )
+
     Column(
         modifier = Modifier
             .clip(

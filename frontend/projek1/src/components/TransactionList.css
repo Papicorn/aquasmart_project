@@ -1,0 +1,107 @@
+/* src/TransactionList.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.header .summary {
+    font-size: 14px;
+}
+
+.summary span {
+    font-weight: bold;
+}
+
+.transaction-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.transaction-item {
+    background-color: #fff;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction-item .icon {
+    font-size: 24px;
+}
+
+.transaction-item .details {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.transaction-item .details .title {
+    font-size: 16px;
+    margin: 0;
+}
+
+.transaction-item .details .time {
+    font-size: 12px;
+    color: #666;
+}
+
+.transaction-item .amount {
+    text-align: right;
+}
+
+.transaction-item .amount .value {
+    font-size: 16px;
+    margin: 0;
+}
+
+.transaction-item .amount .type {
+    font-size: 12px;
+    color: #666;
+}
+
+.transaction-item .amount .income {
+    color: green;
+}
+
+.transaction-item .amount .expense {
+    color: red;
+}
+
+.transaction-item .menu {
+    font-size: 20px;
+    color: #666;
+}
+
+.add-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

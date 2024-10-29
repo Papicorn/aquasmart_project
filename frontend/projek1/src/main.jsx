@@ -1,10 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client'; // Ganti dari 'react-dom' ke 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 
+const rootElement = document.getElementById('root'); // Ambil elemen root
+const root = ReactDOM.createRoot(rootElement); // Gunakan createRoot
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+root.render(
+  <BrowserRouter>
     <App />
-  </StrictMode>,
-)
+  </BrowserRouter>
+);

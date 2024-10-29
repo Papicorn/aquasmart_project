@@ -3,7 +3,9 @@ const app = express();
 const db = require('./db');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const cors = require('cors');
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -20,10 +22,11 @@ const stokikanRoute = require('./routes/stokikans');
 app.use('/api/stokikans', stokikanRoute);
 
 const incomeExpenseRoute = require('./routes/incomeexpense');
-// Gunakan rute untuk income dan expense
+
 app.use('/api/incomeexpense', incomeExpenseRoute);
 
-
+const laporanRoute = require('./routes/laporan');
+app.use('/api/laporan', laporanRoute);
 
 app.listen(3000, () => {
     console.log('Server listening on port 3000');

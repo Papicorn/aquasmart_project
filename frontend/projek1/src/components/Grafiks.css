@@ -1,0 +1,91 @@
+/* Grafik.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 800px;
+}
+
+.header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.date-range {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #a3c4f3;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.date-range div {
+    display: flex;
+    align-items: center;
+    background-color: #e0e7ff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.date-range div i {
+    margin-left: 10px;
+}
+
+.chart {
+    background-color: #e0e7ff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 300px;
+    margin-top: 20px;
+}
+
+.bar div {
+    width: 60px;
+    text-align: center;
+}
+
+.bar div span {
+    display: block;
+    margin-top: 10px;
+}
+
+.bar .income {
+    height: 500px;
+    background-color: #28a745;
+}
+
+.bar .expense {
+    height: 300px;
+    background-color: #dc3545;
+}
+
+.bar .profit {
+    height: 500px;
+    background-color: #007bff;
+}
+
+.bar .loss {
+    height: 400px;
+    background-color: #ffc107;
+}

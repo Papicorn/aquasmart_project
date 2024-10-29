@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/users';
+const API_URL = 'http://localhost:3000';
 
 axios.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
@@ -11,8 +11,8 @@ axios.interceptors.request.use((config) => {
 });
 
 const userService = {
-    async login(username, password) {
-        const response = await axios.post(`${API_URL}/users/login`, { username, password });
+    async login(username, password, role) {
+        const response = await axios.post(`${API_URL}/users/login/admin`, { username, password, role });
         return response.data;
     },
     async signup(username, password) {

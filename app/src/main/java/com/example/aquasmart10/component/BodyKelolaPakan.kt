@@ -35,7 +35,7 @@ import com.example.aquasmart10.R
 import com.example.aquasmart10.Routes
 
 @Composable
-fun BodyKelolaIkan(navController: NavController) {
+fun BodyKelolaPakan(navController: NavController) {
     val customFontFamily = FontFamily(
         Font(R.font.bold, FontWeight.Bold),
         Font(R.font.regular, FontWeight.Normal)
@@ -53,7 +53,7 @@ fun BodyKelolaIkan(navController: NavController) {
             .fillMaxSize()
     ) {
         Text(
-            "Kelola Ikan",
+            "Kelola Pakan",
             fontFamily = customFontFamily,
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp,
@@ -74,7 +74,7 @@ fun BodyKelolaIkan(navController: NavController) {
                         containerColor = Color(0xFFFFFFFF),
                     ),
                     onClick = {
-                        navController.navigate(Routes.StokIkanActivity)
+                        navController.navigate(Routes.KelolaPakanActivity)
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -86,14 +86,14 @@ fun BodyKelolaIkan(navController: NavController) {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.stokikan),
-                            contentDescription = "Stok Ikan",
+                            painter = painterResource(id = R.drawable.jadwalpakan),
+                            contentDescription = "Jadwal Pemberian Pakan",
                             modifier = Modifier
                                 .size(35.dp)
                                 .padding(start = 16.dp)
                         )
                         Text(
-                            "Stok Ikan",
+                            "Jadwal Pemberian Pakan",
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Normal,
                             modifier = Modifier
@@ -118,14 +118,14 @@ fun BodyKelolaIkan(navController: NavController) {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.jadwalpanen),
-                            contentDescription = "Jadwal Panen",
+                            painter = painterResource(id = R.drawable.stokpakan),
+                            contentDescription = "stok pakan",
                             modifier = Modifier
                                 .size(35.dp)
                                 .padding(start = 16.dp)
                         )
                         Text(
-                            "Jadwal Panen",
+                            "Stok Pakan",
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Normal,
                             modifier = Modifier
@@ -150,14 +150,14 @@ fun BodyKelolaIkan(navController: NavController) {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.ripikan),
-                            contentDescription = "Kematian Ikan",
+                            painter = painterResource(id = R.drawable.penghitungdosis),
+                            contentDescription = "hitung dosis",
                             modifier = Modifier
                                 .size(35.dp)
                                 .padding(start = 16.dp)
                         )
                         Text(
-                            "Kematian Ikan",
+                            "Penghitung Dosis Pakan",
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Normal,
                             modifier = Modifier

@@ -1,6 +1,7 @@
 package com.example.aquasmart10.component
 
 import android.R.attr.onClick
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,10 +21,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.aquasmart10.R
+import com.example.aquasmart10.Routes
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
-fun HeaderKelola() {
+fun HeaderKelola(navController: NavController) {
     var isClicked by remember { mutableStateOf(false) }
 
     val customFontFamily = FontFamily(
@@ -39,6 +43,7 @@ fun HeaderKelola() {
         ) {
             TextButton(
                 onClick = {
+                navController.navigate(Routes.KelolaActivity)
                 },
                 modifier = Modifier.weight(1f)
             ) {
@@ -75,6 +80,7 @@ fun HeaderKelola() {
             }
             TextButton(
                 onClick = {
+                    navController.navigate(Routes.KelolaPakanActivity)
                 },
                 modifier = Modifier.weight(1f)
             ) {
@@ -93,8 +99,3 @@ fun HeaderKelola() {
             }
         }
     }
-@Preview
-@Composable
-fun Kelola(){
-    HeaderKelola()
-}

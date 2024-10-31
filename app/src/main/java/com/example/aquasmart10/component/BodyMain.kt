@@ -295,7 +295,7 @@ fun BodyMain() {
                                 item {
                                     Card(
                                         colors = CardDefaults.cardColors(
-                                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                            containerColor = Color(0xFFEFF6FC),
                                         ),
                                         modifier = Modifier
                                             .size(width = 350.dp, height = 50.dp)
@@ -320,10 +320,11 @@ fun BodyMain() {
                                 items (5) { index ->
                                     Card(
                                         colors = CardDefaults.cardColors(
-                                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                            containerColor = Color(0xFFEFF6FC),
                                         ),
                                         modifier = Modifier
-                                            .size(width = 350.dp, height = 50.dp)
+                                            .fillMaxWidth()
+                                            .height(55.dp)
                                     ) {
                                         Row(
                                             modifier = Modifier

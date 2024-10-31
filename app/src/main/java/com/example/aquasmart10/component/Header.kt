@@ -4,6 +4,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -47,21 +53,19 @@ fun Header() {
                 .align(Alignment.TopEnd)
                 .padding(16.dp)
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.notif),
-                contentDescription = "Notification Icon",
-                modifier = Modifier
-                    .padding()
-                    .height(40.dp)
-                    .size(20.dp)
-                    .align(Alignment.TopEnd)
-                    .clickable {
-                        isClicked = !isClicked
-                    },
-                tint = Color.White
-            )
+            BadgedBox(
+                badge = {
+                    Badge()
+                }
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.notif),
+                    contentDescription = "Email",
+                    tint = Color.White,
+                    modifier = Modifier.size(20.dp)
+                )
+            }
         }
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()

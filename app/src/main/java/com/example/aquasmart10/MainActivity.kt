@@ -10,6 +10,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.aquasmart10.component.TambahStokIkan
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +46,41 @@ class MainActivity : ComponentActivity() {
                     exitTransition = { ExitTransition.None }
                 ) {
                     BerandaActivity(navController)
+                }
+                composable(
+                    route = Routes.KelolaPakanActivity,
+                    enterTransition = { EnterTransition.None },
+                    exitTransition = { ExitTransition.None }
+                ) {
+                    KelolaPakanActivity(navController)
+                }
+                composable(
+                    route = Routes.StokIkanActivity,
+                    enterTransition = { EnterTransition.None },
+                    exitTransition = { ExitTransition.None }
+                ) {
+                    StokIkanActivity(navController)
+                }
+                composable(
+                    route = Routes.OverviewStokIkan,
+                    enterTransition = { EnterTransition.None },
+                    exitTransition = { ExitTransition.None }
+                ) {
+                    OverviewStokIkan(navController)
+                }
+                composable(
+                    route = Routes.TambahIkanActivity,
+                    enterTransition = { EnterTransition.None },
+                    exitTransition = { ExitTransition.None }
+                ) {
+                    TambahIkanActivity(navController)
+                }
+                composable(
+                    route = Routes.EditIkanActivity,
+                    enterTransition = { EnterTransition.None },
+                    exitTransition = { ExitTransition.None }
+                ) {
+                    EditIkanActivity(navController)
                 }
             }
         }

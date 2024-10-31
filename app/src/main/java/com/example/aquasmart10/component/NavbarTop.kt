@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -46,19 +48,18 @@ fun NavbarTop(){
                     .align(Alignment.TopEnd)
                     .padding(16.dp)
             ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.notif),
-                    contentDescription = "Notification Icon",
-                    modifier = Modifier
-                        .padding()
-                        .height(40.dp)
-                        .size(20.dp)
-                        .align(Alignment.TopEnd)
-                        .clickable {
-                            isClicked = !isClicked
-                        },
-                    tint = Color.White
-                )
+                BadgedBox(
+                    badge = {
+                        Badge()
+                    }
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.notif),
+                        contentDescription = "Email",
+                        tint = Color.White,
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
             }
 
             Row(

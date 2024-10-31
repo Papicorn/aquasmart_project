@@ -298,7 +298,8 @@ fun BodyMain() {
                                             containerColor = Color(0xFFEFF6FC),
                                         ),
                                         modifier = Modifier
-                                            .size(width = 350.dp, height = 50.dp)
+                                            .fillMaxWidth()
+                                            .height(55.dp)
                                     ) {
                                         Row(
                                             modifier = Modifier

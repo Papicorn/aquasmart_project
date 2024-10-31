@@ -47,7 +47,7 @@ fun HomeScreen(navController: NavController) {
                 .background(Color(0xFF5E7BF9))
         ) {
             Header()
-            BodyMain()
+            BodyMain(navController)
         }
     }
 }

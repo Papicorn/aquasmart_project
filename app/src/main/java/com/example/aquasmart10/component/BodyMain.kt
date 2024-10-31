@@ -2,6 +2,7 @@ package com.example.aquasmart10.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,10 +37,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.aquasmart10.R
+import com.example.aquasmart10.Routes
 
 @Composable
-fun BodyMain() {
+fun BodyMain(navController: NavController) {
     val customFontFamily = FontFamily(
         Font(R.font.bold, FontWeight.Bold)
     )
@@ -76,6 +79,9 @@ fun BodyMain() {
                                 ambientColor = Color.Black.copy(alpha = 0.2f),
                                 spotColor = Color.Black.copy(alpha = 0.5f)
                             ),
+                        onClick = {
+                            navController.navigate(Routes.StokIkanActivity)
+                        },
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
@@ -86,7 +92,7 @@ fun BodyMain() {
                             contentAlignment = Alignment.Center
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Row {
+                                Row{
                                     Image(
                                         painter = painterResource(id = R.drawable.img_3),
                                         contentDescription = "Ikon Stok Ikan",
@@ -122,6 +128,9 @@ fun BodyMain() {
                                 ambientColor = Color.Black.copy(alpha = 0.2f),
                                 spotColor = Color.Black.copy(alpha = 0.5f)
                             ),
+                        onClick = {
+
+                        },
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
@@ -174,6 +183,9 @@ fun BodyMain() {
                                 ambientColor = Color.Black.copy(alpha = 0.2f),
                                 spotColor = Color.Black.copy(alpha = 0.5f)
                             ),
+                        onClick = {
+
+                        },
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
@@ -220,6 +232,9 @@ fun BodyMain() {
                                 ambientColor = Color.Black.copy(alpha = 0.2f),
                                 spotColor = Color.Black.copy(alpha = 0.5f)
                             ),
+                        onClick = {
+
+                        },
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {

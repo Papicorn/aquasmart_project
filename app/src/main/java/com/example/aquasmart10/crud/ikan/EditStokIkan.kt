@@ -546,7 +546,7 @@ fun EditStokIkan(navController: NavController) {
                         },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E7BF9))
                         ) {
-                            Text("Tambah")
+                            Text("Simpan")
                         }
                     }
                 }

@@ -110,7 +110,11 @@ fun BodyKelolaPakan(navController: NavController) {
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(55.dp)
+                        .height(55.dp),
+                    onClick = {
+
+                    },
+
                 ) {
                     Row(
                         modifier = Modifier
@@ -142,7 +146,10 @@ fun BodyKelolaPakan(navController: NavController) {
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(55.dp)
+                        .height(55.dp),
+                    onClick = {
+
+                    },
                 ) {
                     Row(
                         modifier = Modifier

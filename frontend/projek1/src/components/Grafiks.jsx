@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Chart from 'react-apexcharts';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import './Grafiks.css'; // Pastikan Anda memiliki file CSS ini
+
 
 const Grafik = () => {
     const allData = {

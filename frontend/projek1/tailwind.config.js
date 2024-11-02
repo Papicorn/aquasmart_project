@@ -1,11 +1,13 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // Ini sudah mencakup semua file di dalam src
-    "./src/components/**/*.{js,jsx}", // Ini memastikan semua file di dalam folder components juga tercover
-  ],
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "primary-color": "#5E7BF9",
+        "secondary-color": "#859CFF",
+      },
+    },
   },
   plugins: [],
-}
+};

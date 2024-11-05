@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ActionButton } from "./actionButton";
 import { useUserStore } from "../store";
 
-function UserCard({ id, name, role, registration, address }) {
+function UserCard({ id, name, role, registration, address, password, email }) {
   const [showActionMenu, setShowActionMenu] = useState(false);
 
   const toggleActionMenu = () => {
@@ -24,12 +24,18 @@ function UserCard({ id, name, role, registration, address }) {
         <span className="user-card__address">
           Lokasi : <b>{address}</b>
         </span>
+        <span className="user-card__email">
+          Email : <b>{email}</b>
+        </span>
+        <span className="user-card__password">
+          Password : <b>{password}</b>
+        </span>
       </div>
       <div className="flex">
         <button onClick={toggleActionMenu}>
           <img src="icons/option.png" alt="Option" className="w-8 self-center" />
         </button>
-        <div className="-bottom-0 -right-0 relative">{showActionMenu && <ActionButton id={id} deleteState={useUserStore.getState().deleteUser} />}</div>
+        <div className="-bottom-0 -right-0 relative">{showActionMenu && <ActionButton url={`/pengguna/${id}`} id={id} deleteState={useUserStore.getState().deleteUser} />}</div>
       </div>
     </div>
   );

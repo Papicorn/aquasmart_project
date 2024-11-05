@@ -9,17 +9,38 @@ function AddingPage() {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("Petani");
   const [password, setPassword] = useState("");
+
+  const getYear = new Date().getFullYear();
+  const getMonth = new Date().getMonth();
+  const getDay = new Date().getDate();
+
+  const indonesianMonths = {
+    1: "Januari",
+    2: "Februari",
+    3: "Maret",
+    4: "April",
+    5: "Mei",
+    6: "Juni",
+    7: "Juli",
+    8: "Agustus",
+    9: "September",
+    10: "Oktober",
+    11: "November",
+    12: "Desember",
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let formData = {
+      id: new Date().getTime(),
       name,
       address,
       email,
       role,
       password,
+      registration: `${getDay} ${indonesianMonths[getMonth]} ${getYear}`,
     };
     addUser(formData);
     navigate("/pengguna");
@@ -39,12 +60,8 @@ function AddingPage() {
         <input type="email" className="border border-secondary-color p-2 rounded-lg" onChange={(e) => setEmail(e.target.value)} />
       </div>
       <div className="flex flex-col gap-y-2">
-        <label htmlFor="">Role</label>
-        <input type="text" className="border border-secondary-color p-2 rounded-lg" onChange={(e) => setRole(e.target.value)} />
-      </div>
-      <div className="flex flex-col gap-y-2">
         <label htmlFor="">Kata Sandi</label>
-        <input type="password" className="border border-secondary-color p-2 rounded-lg" onChange={(e) => setPassword(e.target.value)} />
+        <input type="text" className="border border-secondary-color p-2 rounded-lg" onChange={(e) => setPassword(e.target.value)} />
       </div>
 
       <button type="submit" className=" bg-primary-color text-white px-4 py-2 rounded-lg mt-4 self-end">

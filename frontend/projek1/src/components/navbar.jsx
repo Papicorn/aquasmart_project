@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const navbarList = [
-  { url: "/home", name: "Beranda" },
+  { url: "/", name: "Beranda" },
   { url: "/pengguna", name: "Pengguna" },
   { url: "/laporan", name: "Laporan" },
   { url: "/dokumentasi", name: "Dokumentasi" },
@@ -23,7 +23,10 @@ function Navbar() {
       </div>
       <div className="navbar__icons flex gap-x-4">
         <img src="icons/Bell.png" alt="Bell" className="h-5 cursor-pointer" />
-        <img src="icons/User.png" alt="User" className="h-5 cursor-pointer" />
+
+        <Link to={"/profile"}>
+          <img src="icons/User.png" alt="User" className="h-5 cursor-pointer" />
+        </Link>
       </div>
     </div>
   );

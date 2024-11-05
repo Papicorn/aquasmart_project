@@ -31,7 +31,7 @@ function Card({ id, icon, title, time, price, type }) {
         <button className="card__option" onClick={toggleActionMenu}>
           <img src="icons/option.png" alt="Option" className="w-5 self-center" />
         </button>
-        <div className="-bottom-0 -right-0 relative">{showActionMenu && <ActionButton id={id} deleteState={useCardStore.getState().deleteCard} />}</div>
+        <div className="-bottom-0 -right-0 relative">{showActionMenu && <ActionButton url={`/laporan/${id}`} id={id} deleteState={useCardStore.getState().deleteCard} />}</div>
       </div>
     </div>
   );

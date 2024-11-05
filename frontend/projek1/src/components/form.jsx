@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 function Form({ card = {} }) {
   const [kategori, setKategori] = useState(card?.type ?? "");
-  const [jenisTransaksi, setJenisTransaksi] = useState(card.title || "");
+  const [jenisTransaksi, setJenisTransaksi] = useState("");
   const [harga, setHarga] = useState(parseInt(card?.price?.replace(/[^0-9]/g, "")) || 0);
   const [tanggal, setTanggal] = useState("");
-  const [catatan, setCatatan] = useState("");
+  const [catatan, setCatatan] = useState(card?.title ?? "");
 
   const addCard = useCardStore((state) => state.addCard);
   const updateCard = useCardStore((state) => state.updateCard);
@@ -24,11 +24,20 @@ function Form({ card = {} }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const firstLetter = jenisTransaksi.trim().toLowerCase().split(" ")[0];
+    console.log(firstLetter);
+    let icon = "fish.png";
+
+    if (firstLetter === "bibit") {
+      icon = "egg.png";
+    } else if (firstLetter === "fish") {
+      icon = "egg.png";
+    }
 
     let formData = {
       id: new Date().getTime(),
-      icon: "fish.png",
-      title: jenisTransaksi,
+      icon: icon,
+      title: catatan,
       time: new Date().toLocaleTimeString(),
       price: formatToIDR(harga),
       type: kategori,
@@ -59,27 +68,27 @@ function Form({ card = {} }) {
           <select name="jenis-transaksi" id="jenis-transaksi" value={jenisTransaksi} onChange={(e) => setJenisTransaksi(e.target.value)}>
             {kategori === "" && (
               <>
-                <option value="pemasukan">Penjualan ikan</option>
-                <option value="pengeluaran">Opsi Lainnya</option>
-                <option value="pengeluaran">Pakan ikan</option>
-                <option value="pengeluaran">Bibit ikan</option>
-                <option value="pengeluaran">Biaya peralatan/infrastruktur</option>
-                <option value="pengeluaran">Obat-obatan</option>
-                <option value="pengeluaran">Opsi lainnya</option>
+                <option value="Penjualan ikan">Penjualan ikan</option>
+                <option value="Opsi Lainnya">Opsi Lainnya</option>
+                <option value="Pakan Ikan">Pakan ikan</option>
+                <option value="Bibit Ikan">Bibit ikan</option>
+                <option value="Biaya peralatan">Biaya peralatan/infrastruktur</option>
+                <option value="Obat-obatan">Obat-obatan</option>
+                <option value="Opsi lainnya">Opsi lainnya</option>
               </>
             )}
             {kategori === "pemasukan" ? (
               <>
-                <option value="pemasukan">Penjualan ikan</option>
-                <option value="pengeluaran">Opsi Lainnya</option>
+                <option value="Penjualan Ikan">Penjualan ikan</option>
+                <option value="Opsi Lainnya">Opsi Lainnya</option>
               </>
             ) : (
               <>
-                <option value="pengeluaran">Pakan ikan</option>
-                <option value="pengeluaran">Bibit ikan</option>
-                <option value="pengeluaran">Biaya peralatan/infrastruktur</option>
-                <option value="pengeluaran">Obat-obatan</option>
-                <option value="pengeluaran">Opsi lainnya</option>
+                <option value="Pakan ikan">Pakan ikan</option>
+                <option value="Bibit ikan">Bibit ikan</option>
+                <option value="Biaya peralatan">Biaya peralatan/infrastruktur</option>
+                <option value="Obat-obatan">Obat-obatan</option>
+                <option value="Opsi Lainnya">Opsi lainnya</option>
               </>
             )}
           </select>

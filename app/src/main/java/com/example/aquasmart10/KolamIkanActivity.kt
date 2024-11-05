@@ -1,0 +1,69 @@
+package com.example.aquasmart10
+
+import com.example.aquasmart10.component.KolamIkanBody
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.aquasmart10.component.BottomNavigationBar
+import com.example.aquasmart10.ui.theme.AquaSmart10Theme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import androidx.compose.material3.FabPosition
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import com.example.aquasmart10.component.KolamIkanHeader
+import androidx.navigation.NavController
+
+@Composable
+fun KolamIkanScreen(navController: NavController) {
+    Scaffold(
+        bottomBar = {
+            BottomNavigationBar(navController)
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { },
+                modifier = Modifier
+                    .size(70.dp)
+                    .shadow(4.dp, shape = RoundedCornerShape(15.dp)),
+                containerColor = Color.White
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.img_9),
+                    contentDescription = "icon add",
+                    modifier = Modifier
+                        .size(50.dp),
+                )
+            }
+        },
+        floatingActionButtonPosition = FabPosition.End
+    ) { padding ->
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .background(Color(0xFF5E7BF9))
+        ) {
+            KolamIkanHeader(navController)
+            KolamIkanBody(navController)
+        }
+    }
+}

@@ -23,6 +23,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".StokPakanActivity" android:exported="true" />
+        <activity android:name=".EditPakanActivity" android:exported="true" />
+        <activity android:name=".TambahPakanActivity" android:exported="true" />
+        <activity android:name=".KolamIkanActivity" android:exported="true" />
+        <activity android:name=".TambahKolamActivity" android:exported="true" />
+        <activity android:name=".EditKolamActivity" android:exported="true" />
+        <activity android:name=".PengingatPakanActivity" android:exported="true" />
+        <activity android:name=".TambahJadwalPakanActivity" android:exported="true" />
+        <activity android:name=".EditJadwalPakanActivity" android:exported="true" />
+        <activity android:name=".cover2Activity" android:exported="true" />
+
+
+
+
+
+
     </application>
 
 </manifest>

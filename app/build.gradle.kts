@@ -58,9 +58,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
+    implementation ("androidx.compose.material3:material3:1.3.0")
+    implementation ("com.google.accompanist:accompanist-pager:0.28.0")
+    implementation ("com.google.accompanist:accompanist-pager-indicators:0.28.0")
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
+
 
     // Extended Icons
     implementation("androidx.compose.material:material-icons-extended:1.5.4")
     implementation(platform("androidx.compose:compose-bom:2024.09.03"))
     implementation ("androidx.navigation:navigation-compose:2.7.5")
+
+
 }

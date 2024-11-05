@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aquasmart10.R
+import androidx.navigation.NavController
 
 data class HeaderIcon(
     val iconRes: Int,
@@ -25,7 +26,7 @@ data class HeaderIcon(
 )
 
 @Composable
-fun Header() {
+fun Header(navController: NavController) {
     var isClicked by remember { mutableStateOf(false) }
     val sambutan = "Selamat Datang,"
     var nama = "Hanif"
@@ -53,7 +54,7 @@ fun Header() {
                 modifier = Modifier
                     .padding()
                     .height(40.dp)
-                    .size(20.dp)
+                    .size(24.dp)
                     .align(Alignment.TopEnd)
                     .clickable {
                         isClicked = !isClicked
@@ -100,9 +101,12 @@ fun Header() {
             Image(
                 painter = painterResource(R.drawable.bapak),
                 contentDescription = null,
-                modifier = Modifier.scale(1.5f).padding(bottom = 20.dp, end = 13.dp)
+                modifier = Modifier
+                    .scale(1.5f)
+                    .padding(bottom = 20.dp, end = 13.dp)
 
             )
         }
     }
 }
+

@@ -91,7 +91,6 @@ fun CoverScreen(navController: NavController) {
                 contentDescription = "Slide Image ${page + 1}",
                 modifier = Modifier
                     .fillMaxSize()  // Mengisi seluruh ruang
-                    .clip(RoundedCornerShape(bottomStart = 50.dp, bottomEnd = 50.dp))  // Menambahkan clip agar gambar ikut rounded
             )
         }
 

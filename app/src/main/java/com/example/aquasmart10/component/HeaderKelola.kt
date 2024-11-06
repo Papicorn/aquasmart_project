@@ -27,75 +27,107 @@ import com.example.aquasmart10.Routes
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
-fun HeaderKelola(navController: NavController) {
-    var isClicked by remember { mutableStateOf(false) }
-
+fun HeaderKelola(
+    navController: NavController, currentTab: String // Add this parameter
+) {
     val customFontFamily = FontFamily(
-        Font(R.font.bold, FontWeight.Bold),
-        Font(R.font.regular, FontWeight.Normal)
+        Font(R.font.bold, FontWeight.Bold), Font(R.font.regular, FontWeight.Normal)
     )
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color(0xFF5E7BF9)),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            TextButton(
-                onClick = {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color(0xFF5E7BF9)),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        TextButton(
+            onClick = {
                 navController.navigate(Routes.KelolaActivity)
-                },
-                modifier = Modifier.weight(1f)
+            }, modifier = Modifier
+                .weight(1f)
+                .background(
+                    if (currentTab == "Ikan") Color(0xFF8BA3FC)
+                    else Color.Transparent
+                )
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.img_3),
-                        contentDescription = "Ikan",
-                        modifier = Modifier.size(18.dp),
-                        tint = Color.White
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Ikan", color = Color.White, fontFamily = customFontFamily, fontWeight = FontWeight.Bold)
-                }
+                Icon(
+                    painter = painterResource(id = R.drawable.img_3),
+                    contentDescription = "Ikan",
+                    modifier = Modifier.size(18.dp),
+                    tint = Color.White
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    "Ikan",
+                    color = Color.White,
+                    fontFamily = customFontFamily,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
+                )
             }
-            TextButton(
-                onClick = {
-                },
-                modifier = Modifier.weight(1f)
+        }
+
+        TextButton(
+            onClick = {
+                navController.navigate(Routes.KolamIkanScreen)
+            }, modifier = Modifier
+                .weight(1f)
+                .background(
+                    if (currentTab == "Kolam") Color(0xFF8BA3FC)
+                    else Color.Transparent
+                )
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.kelolakolam),
-                        contentDescription = "Kolam",
-                        modifier = Modifier.size(18.dp),
-                        tint = Color.White
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Kolam", color = Color.White, fontFamily = customFontFamily, fontWeight = FontWeight.Bold)
-                }
+                Icon(
+                    painter = painterResource(id = R.drawable.kelolakolam),
+                    contentDescription = "Kolam",
+                    modifier = Modifier.size(18.dp),
+                    tint = Color.White
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    "Kolam",
+                    color = Color.White,
+                    fontFamily = customFontFamily,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
+                )
             }
-            TextButton(
-                onClick = {
-                    navController.navigate(Routes.KelolaPakanActivity)
-                },
-                modifier = Modifier.weight(1f)
+        }
+
+        TextButton(
+            onClick = {
+                navController.navigate(Routes.KelolaPakanActivity)
+            }, modifier = Modifier
+                .weight(1f)
+                .background(
+                    if (currentTab == "Pakan") Color(0xFF8BA3FC)
+                    else Color.Transparent
+                )
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.kelolapakan),
-                        contentDescription = "Kolam",
-                        modifier = Modifier.size(18.dp),
-                        tint = Color.White
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Pakan", color = Color.White, fontFamily = customFontFamily, fontWeight = FontWeight.Bold)
-                }
+                Icon(
+                    painter = painterResource(id = R.drawable.kelolapakan),
+                    contentDescription = "Pakan",
+                    modifier = Modifier.size(18.dp),
+                    tint = Color.White
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    "Pakan",
+                    color = Color.White,
+                    fontFamily = customFontFamily,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
+                )
             }
         }
     }
+}

@@ -92,7 +92,7 @@ fun BodyMain(navController: NavController) {
                             contentAlignment = Alignment.Center
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Row{
+                                Row {
                                     Image(
                                         painter = painterResource(id = R.drawable.img_3),
                                         contentDescription = "Ikon Stok Ikan",
@@ -184,7 +184,7 @@ fun BodyMain(navController: NavController) {
                                 spotColor = Color.Black.copy(alpha = 0.5f)
                             ),
                         onClick = {
-
+                            navController.navigate(Routes.KelolaPakanActivity)
                         },
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
@@ -233,7 +233,7 @@ fun BodyMain(navController: NavController) {
                                 spotColor = Color.Black.copy(alpha = 0.5f)
                             ),
                         onClick = {
-
+                            navController.navigate(Routes.NotifikasiActivity)
                         },
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
@@ -302,10 +302,10 @@ fun BodyMain(navController: NavController) {
                                 color = Color.Black,
                                 modifier = Modifier.padding(bottom = 8.dp)
                             )
-                            LazyColumn (
+                            LazyColumn(
                                 verticalArrangement = Arrangement.spacedBy(12.dp),
                                 modifier = Modifier.fillMaxWidth()
-                            ){
+                            ) {
                                 //Card pengingat terdekat
                                 item {
                                     Card(
@@ -333,7 +333,7 @@ fun BodyMain(navController: NavController) {
                                     }
                                 }
                                 // Loop 5 card pengingat terdekat
-                                items (5) { index ->
+                                items(5) { index ->
                                     Card(
                                         colors = CardDefaults.cardColors(
                                             containerColor = Color(0xFFEFF6FC),

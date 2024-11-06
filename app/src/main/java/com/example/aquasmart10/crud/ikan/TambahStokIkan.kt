@@ -1,13 +1,14 @@
 package com.example.aquasmart10.component
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,7 +21,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -64,8 +64,7 @@ import java.util.Locale
 @Composable
 fun TambahStokIkan(navController: NavController) {
     val customFontFamily = FontFamily(
-        Font(R.font.bold, FontWeight.Bold),
-        Font(R.font.regular, FontWeight.Normal)
+        Font(R.font.bold, FontWeight.Bold), Font(R.font.regular, FontWeight.Normal)
     )
 
     val list = listOf("Kolam A-A1", "Kolam B-B1")
@@ -87,9 +86,6 @@ fun TambahStokIkan(navController: NavController) {
     var selectedDatePanenTambah by remember { mutableStateOf<Long?>(null) }
 
     // Card Berat g/kg/ton
-    val listSatuan = listOf("G", "KG", "TON")
-    var selectedTextBerat by remember { mutableStateOf(listSatuan[1]) }
-    var isExpandedSatuan by remember { mutableStateOf(false) }
     var intValueBerat by remember { mutableStateOf("") }
     Box(
         modifier = Modifier
@@ -103,12 +99,11 @@ fun TambahStokIkan(navController: NavController) {
             modifier = Modifier.fillMaxSize()
         ) {
             Text(
-                "Stok Ikan Kolam A-A1",
+                "Tambah Stok Ikan",
                 fontFamily = customFontFamily,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
-                modifier = Modifier
-                    .padding(top = 16.dp, start = 25.dp)
+                modifier = Modifier.padding(top = 16.dp, start = 25.dp)
             )
             LazyColumn(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -126,17 +121,14 @@ fun TambahStokIkan(navController: NavController) {
                             .fillMaxWidth()
                             .height(50.dp)
                     ) {
-                        ExposedDropdownMenuBox(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(50.dp),
+                        ExposedDropdownMenuBox(modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
                             expanded = isExpanded,
-                            onExpandedChange = { isExpanded = !isExpanded }
-                        ) {
-                            TextField(
-                                modifier = Modifier
-                                    .menuAnchor()
-                                    .fillMaxWidth(),
+                            onExpandedChange = { isExpanded = !isExpanded }) {
+                            TextField(modifier = Modifier
+                                .menuAnchor()
+                                .fillMaxWidth(),
                                 value = selectedText,
                                 onValueChange = {},
                                 readOnly = true,
@@ -147,16 +139,14 @@ fun TambahStokIkan(navController: NavController) {
                                 shape = RoundedCornerShape(12.dp),
                                 trailingIcon = {
                                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded)
-                                }
-                            )
+                                })
                             ExposedDropdownMenu(
                                 expanded = isExpanded,
                                 onDismissRequest = { isExpanded = false },
                                 modifier = Modifier.background(Color.White)
                             ) {
                                 list.forEachIndexed { index, text ->
-                                    DropdownMenuItem(
-                                        modifier = Modifier.fillMaxWidth(),
+                                    DropdownMenuItem(modifier = Modifier.fillMaxWidth(),
                                         text = {
                                             Text(
                                                 text = text,
@@ -213,23 +203,19 @@ fun TambahStokIkan(navController: NavController) {
                     }
                     // Jadi disini tanggal tebar gabisa duluan dibanding tanggal panen
                     if (showDatePickerTebar) {
-                        DatePickerTambah(
-                            onDateSelected = { dateInMillis ->
-                                dateInMillis?.let {
-                                    if (selectedDatePanenTambah != null && it > selectedDatePanenTambah!!) {
-                                        // Beri pesan kesalahan atau peringatan kepada pengguna
-                                    } else {
-                                        selectedDateTebarTambah = it
-                                        selectedDateTebar = SimpleDateFormat(
-                                            "dd/MM/yyyy",
-                                            Locale.getDefault()
-                                        ).format(it)
-                                    }
+                        DatePickerTambah(onDateSelected = { dateInMillis ->
+                            dateInMillis?.let {
+                                if (selectedDatePanenTambah != null && it > selectedDatePanenTambah!!) {
+                                    // Beri pesan kesalahan atau peringatan kepada pengguna
+                                } else {
+                                    selectedDateTebarTambah = it
+                                    selectedDateTebar = SimpleDateFormat(
+                                        "dd/MM/yyyy", Locale.getDefault()
+                                    ).format(it)
                                 }
-                                showDatePickerTebar = false
-                            },
-                            onDismiss = { showDatePickerTebar = false }
-                        )
+                            }
+                            showDatePickerTebar = false
+                        }, onDismiss = { showDatePickerTebar = false })
                     }
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -270,23 +256,19 @@ fun TambahStokIkan(navController: NavController) {
                     }
                     //Tanggal tebar harus duluan, gaboleh tanggal panen duluan
                     if (showDatePickerPanen) {
-                        DatePickerTambah(
-                            onDateSelected = { dateInMillis ->
-                                dateInMillis?.let {
-                                    if (selectedDateTebarTambah != null && it < selectedDateTebarTambah!!) {
-                                        // Beri pesan kesalahan atau peringatan kepada pengguna
-                                    } else {
-                                        selectedDatePanenTambah = it
-                                        selectedDatePanen = SimpleDateFormat(
-                                            "dd/MM/yyyy",
-                                            Locale.getDefault()
-                                        ).format(it)
-                                    }
+                        DatePickerTambah(onDateSelected = { dateInMillis ->
+                            dateInMillis?.let {
+                                if (selectedDateTebarTambah != null && it < selectedDateTebarTambah!!) {
+                                    // Beri pesan kesalahan atau peringatan kepada pengguna
+                                } else {
+                                    selectedDatePanenTambah = it
+                                    selectedDatePanen = SimpleDateFormat(
+                                        "dd/MM/yyyy", Locale.getDefault()
+                                    ).format(it)
                                 }
-                                showDatePickerPanen = false
-                            },
-                            onDismiss = { showDatePickerPanen = false }
-                        )
+                            }
+                            showDatePickerPanen = false
+                        }, onDismiss = { showDatePickerPanen = false })
                     }
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -300,41 +282,30 @@ fun TambahStokIkan(navController: NavController) {
                             .fillMaxWidth()
                             .height(50.dp)
                     ) {
-                        TextField(
-                            value = intValue,
-                            onValueChange = { newText ->
-                                // hanya angka yang bisa
-                                if (newText.all { it.isDigit() }) {
-                                    intValue = newText
-                                }
-                            },
-                            colors = TextFieldDefaults.colors(
-                                unfocusedContainerColor = Color.White,
-                                focusedContainerColor = Color.White,
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent
-                            ),
-                            placeholder = {
-                                Text(
-                                    "Nila Merah",
-                                    fontFamily = customFontFamily,
-                                    fontSize = 14.sp,
-                                )
-                            },
-                            keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number,
-                                imeAction = ImeAction.Done
-                            ),
-                            keyboardActions = KeyboardActions(
-                                onDone = {
-                                    submittedValue = textValue  // Simpan nilai saat enter ditekan
-                                    focusManager.clearFocus() //ini tu kalo misal udah selesai ngetik trus tekan enter keyboardnya ilang gitu
-                                    // Di sini nambahin logika lain yang dibutuhkan
-                                    // seperti menyimpan ke database atau memproses nilai
-                                }
-                            ),
-                            modifier = Modifier.fillMaxWidth()
-                        )
+                        TextField(value = intValue, onValueChange = { newText ->
+                            // hanya angka yang bisa
+                            if (newText.all { it.isDigit() }) {
+                                intValue = newText
+                            }
+                        }, colors = TextFieldDefaults.colors(
+                            unfocusedContainerColor = Color.White,
+                            focusedContainerColor = Color.White,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent
+                        ), placeholder = {
+                            Text(
+                                "Nila Merah",
+                                fontFamily = customFontFamily,
+                                fontSize = 14.sp,
+                            )
+                        }, keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Number, imeAction = ImeAction.Done
+                        ), keyboardActions = KeyboardActions(onDone = {
+                            submittedValue = textValue  // Simpan nilai saat enter ditekan
+                            focusManager.clearFocus() //ini tu kalo misal udah selesai ngetik trus tekan enter keyboardnya ilang gitu
+                            // Di sini nambahin logika lain yang dibutuhkan
+                            // seperti menyimpan ke database atau memproses nilai
+                        }), modifier = Modifier.fillMaxWidth())
                     }
                     Spacer(modifier = Modifier.height(16.dp))
 
@@ -347,48 +318,38 @@ fun TambahStokIkan(navController: NavController) {
                             .fillMaxWidth()
                             .height(50.dp)
                     ) {
-                        TextField(
-                            value = intValueNilaHitam,
-                            onValueChange = { newText ->
-                                // hanya angka yang bisa
-                                if (newText.all { it.isDigit() }) {
-                                    intValueNilaHitam = newText
-                                }
-                            },
-                            colors = TextFieldDefaults.colors(
-                                unfocusedContainerColor = Color.White,
-                                focusedContainerColor = Color.White,
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent
-                            ),
-                            placeholder = {
-                                Text(
-                                    "Nila Hitam",
-                                    fontFamily = customFontFamily,
-                                    fontSize = 14.sp,
-                                )
-                            },
-                            keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number,
-                                imeAction = ImeAction.Done
-                            ),
-                            keyboardActions = KeyboardActions(
-                                onDone = {
-                                    submittedValue = textValue  // Simpan nilai saat enter ditekan
-                                    focusManager.clearFocus() //ini tu kalo misal udah selesai ngetik trus tekan enter keyboardnya ilang gitu
-                                    // Di sini nambahin logika lain yang dibutuhkan
-                                    // seperti menyimpan ke database atau memproses nilai
-                                }
-                            ),
-                            modifier = Modifier.fillMaxWidth()
-                        )
+                        TextField(value = intValueNilaHitam, onValueChange = { newText ->
+                            // hanya angka yang bisa
+                            if (newText.all { it.isDigit() }) {
+                                intValueNilaHitam = newText
+                            }
+                        }, colors = TextFieldDefaults.colors(
+                            unfocusedContainerColor = Color.White,
+                            focusedContainerColor = Color.White,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent
+                        ), placeholder = {
+                            Text(
+                                "Nila Hitam",
+                                fontFamily = customFontFamily,
+                                fontSize = 14.sp,
+                            )
+                        }, keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Number, imeAction = ImeAction.Done
+                        ), keyboardActions = KeyboardActions(onDone = {
+                            submittedValue = textValue  // Simpan nilai saat enter ditekan
+                            focusManager.clearFocus() //ini tu kalo misal udah selesai ngetik trus tekan enter keyboardnya ilang gitu
+                            // Di sini nambahin logika lain yang dibutuhkan
+                            // seperti menyimpan ke database atau memproses nilai
+                        }), modifier = Modifier.fillMaxWidth())
                     }
 
                     Spacer(modifier = Modifier.height(16.dp))
                     Row(
                         modifier = Modifier
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            .fillMaxWidth()
+                            .height(IntrinsicSize.Min),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
                         Card(
                             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
@@ -398,97 +359,51 @@ fun TambahStokIkan(navController: NavController) {
                                 .weight(7f)
                                 .height(50.dp)
                         ) {
-                            // Konten Card pertama
-                            TextField(
-                                value = intValueBerat,
-                                onValueChange = { newText ->
-                                    // hanya angka yang bisa
+                            Row(
+                                modifier = Modifier.fillMaxSize(),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                // TextField
+                                TextField(value = intValueBerat, onValueChange = { newText ->
                                     if (newText.all { it.isDigit() }) {
                                         intValueBerat = newText
                                     }
-                                },
-                                colors = TextFieldDefaults.colors(
+                                }, colors = TextFieldDefaults.colors(
                                     unfocusedContainerColor = Color.White,
                                     focusedContainerColor = Color.White,
                                     focusedIndicatorColor = Color.Transparent,
                                     unfocusedIndicatorColor = Color.Transparent
-                                ),
-                                placeholder = {
+                                ), placeholder = {
                                     Text(
                                         "Berat",
                                         fontFamily = customFontFamily,
                                         fontSize = 14.sp,
                                     )
-                                },
-                                keyboardOptions = KeyboardOptions(
+                                }, keyboardOptions = KeyboardOptions(
                                     keyboardType = KeyboardType.Number,
                                     imeAction = ImeAction.Done
-                                ),
-                                keyboardActions = KeyboardActions(
-                                    onDone = {
-                                        submittedValue = textValue  // Simpan nilai saat enter ditekan
-                                        focusManager.clearFocus() //ini tu kalo misal udah selesai ngetik trus tekan enter keyboardnya ilang gitu
-                                        // Di sini nambahin logika lain yang dibutuhkan
-                                        // seperti menyimpan ke database atau memproses nilai
-                                    }
-                                ),
-                                modifier = Modifier.fillMaxWidth()
-                            )
-                        }
-
-                        Card(
-                            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                            colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
-                            shape = RoundedCornerShape(12.dp),
-                            modifier = Modifier
-                                .weight(3f)
-                                .height(50.dp)
-                        ) {
-                            ExposedDropdownMenuBox(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(50.dp),
-                                expanded = isExpandedSatuan,
-                                onExpandedChange = { isExpandedSatuan = !isExpandedSatuan }
-                            ) {
-                                TextField(
+                                ), keyboardActions = KeyboardActions(onDone = {
+                                    submittedValue = textValue
+                                    focusManager.clearFocus()
+                                }), modifier = Modifier.weight(1f))
+                                Box(
                                     modifier = Modifier
-                                        .menuAnchor()
-                                        .fillMaxWidth(),
-                                    value = selectedTextBerat,
-                                    onValueChange = {},
-                                    readOnly = true,
-                                    colors = TextFieldDefaults.colors(
-                                        unfocusedContainerColor = Color.White,
-                                        focusedContainerColor = Color.White,
-                                    ),
-                                    shape = RoundedCornerShape(12.dp),
-                                    trailingIcon = {
-                                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedSatuan)
-                                    }
-                                )
-                                ExposedDropdownMenu(
-                                    expanded = isExpandedSatuan,
-                                    onDismissRequest = { isExpandedSatuan = false },
-                                    modifier = Modifier.background(Color.White)
-                                ) {
-                                    listSatuan.forEachIndexed { index, text ->
-                                        DropdownMenuItem(
-                                            modifier = Modifier.fillMaxWidth(),
-                                            text = {
-                                                Text(
-                                                    text = text,
-                                                    fontSize = 14.sp,
-                                                    fontFamily = customFontFamily
-                                                )
-                                            },
-                                            onClick = {
-                                                selectedTextBerat = listSatuan[index]
-                                                isExpandedSatuan = false
-                                            },
-                                            contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
+                                        .background(
+                                            Color.LightGray, shape = RoundedCornerShape(
+                                                topEnd = 12.dp, bottomEnd = 12.dp
+                                            )
                                         )
-                                    }
+                                        .padding(vertical = 12.dp, horizontal = 8.dp)
+                                        .width(75.dp)
+                                        .fillMaxHeight(), contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        text = "KG",
+                                        color = Color.Black,
+                                        fontSize = 18.sp,
+                                        fontFamily = customFontFamily,
+                                        fontWeight = FontWeight.Bold
+                                    )
                                 }
                             }
                         }
@@ -501,39 +416,28 @@ fun TambahStokIkan(navController: NavController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentHeight()
-                    ){
-                        TextField(
-                            value = intValueLampiran,
-                            onValueChange = { newText ->
-                                intValueLampiran = newText
-                            },
-                            colors = TextFieldDefaults.colors(
-                                unfocusedContainerColor = Color.White,
-                                focusedContainerColor = Color.White,
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent
-                            ),
-                            placeholder = {
-                                Text(
-                                    "Lampiran",
-                                    fontFamily = customFontFamily,
-                                    fontSize = 14.sp,
-                                )
-                            },
-                            keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Text,
-                                imeAction = ImeAction.Done
-                            ),
-                            keyboardActions = KeyboardActions(
-                                onDone = {
-                                    submittedValue = textValue  // Simpan nilai saat enter ditekan
-                                    focusManager.clearFocus() //ini tu kalo misal udah selesai ngetik trus tekan enter keyboardnya ilang gitu
-                                    // Di sini nambahin logika lain yang dibutuhkan
-                                    // seperti menyimpan ke database atau memproses nilai
-                                }
-                            ),
-                            modifier = Modifier.fillMaxWidth()
-                        )
+                    ) {
+                        TextField(value = intValueLampiran, onValueChange = { newText ->
+                            intValueLampiran = newText
+                        }, colors = TextFieldDefaults.colors(
+                            unfocusedContainerColor = Color.White,
+                            focusedContainerColor = Color.White,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent
+                        ), placeholder = {
+                            Text(
+                                "Lampiran",
+                                fontFamily = customFontFamily,
+                                fontSize = 14.sp,
+                            )
+                        }, keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Text, imeAction = ImeAction.Done
+                        ), keyboardActions = KeyboardActions(onDone = {
+                            submittedValue = textValue  // Simpan nilai saat enter ditekan
+                            focusManager.clearFocus() //ini tu kalo misal udah selesai ngetik trus tekan enter keyboardnya ilang gitu
+                            // Di sini nambahin logika lain yang dibutuhkan
+                            // seperti menyimpan ke database atau memproses nilai
+                        }), modifier = Modifier.fillMaxWidth())
                     }
                     Row(
                         modifier = Modifier
@@ -541,9 +445,10 @@ fun TambahStokIkan(navController: NavController) {
                             .padding(top = 10.dp),
                         horizontalArrangement = Arrangement.End
                     ) {
-                        Button(onClick = {
-                            navController.navigate(Routes.StokIkanActivity)
-                        },
+                        Button(
+                            onClick = {
+                                navController.navigate(Routes.StokIkanActivity)
+                            },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E7BF9))
                         ) {
                             Text("Tambah")
@@ -558,27 +463,22 @@ fun TambahStokIkan(navController: NavController) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DatePickerTambah(
-    onDateSelected: (Long?) -> Unit,
-    onDismiss: () -> Unit
+    onDateSelected: (Long?) -> Unit, onDismiss: () -> Unit
 ) {
     val datePickerState = rememberDatePickerState()
 
-    DatePickerDialog(
-        onDismissRequest = onDismiss,
-        confirmButton = {
-            TextButton(onClick = {
-                onDateSelected(datePickerState.selectedDateMillis)
-                onDismiss()
-            }) {
-                Text("OK")
-            }
-        },
-        dismissButton = {
-            TextButton(onClick = onDismiss) {
-                Text("Cancel")
-            }
+    DatePickerDialog(onDismissRequest = onDismiss, confirmButton = {
+        TextButton(onClick = {
+            onDateSelected(datePickerState.selectedDateMillis)
+            onDismiss()
+        }) {
+            Text("OK")
         }
-    ) {
+    }, dismissButton = {
+        TextButton(onClick = onDismiss) {
+            Text("Cancel")
+        }
+    }) {
         DatePicker(state = datePickerState)
     }
 }

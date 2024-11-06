@@ -1,4 +1,4 @@
-package com.example.aquasmart10
+package com.example.aquasmart10.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -12,10 +12,11 @@ import androidx.navigation.NavController
 import com.example.aquasmart10.component.HeaderKelola
 import com.example.aquasmart10.component.NavbarBottom
 import com.example.aquasmart10.component.NavbarTop
-import com.example.aquasmart10.component.OverviewIkan
+import com.example.aquasmart10.component.TambahStokIkan
+import com.example.aquasmart10.crud.pakan.TambahJadwalPakanBody
 
 @Composable
-fun OverviewStokIkan(navController: NavController) {
+fun TambahJadwalPakanActivity(navController: NavController) {
     Scaffold(
         bottomBar = {
             NavbarBottom(navController)
@@ -28,9 +29,9 @@ fun OverviewStokIkan(navController: NavController) {
                 .padding(padding)
                 .background(Color(0xFF5E7BF9))
         ) {
-            NavbarTop()
-            HeaderKelola(navController)
-            OverviewIkan(navController)
+            NavbarTop(navController)
+            HeaderKelola(navController, currentTab = "Pakan")
+            TambahJadwalPakanBody(navController)
         }
     }
 }

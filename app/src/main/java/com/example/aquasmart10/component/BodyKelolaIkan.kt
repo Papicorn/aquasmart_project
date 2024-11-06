@@ -37,16 +37,14 @@ import com.example.aquasmart10.Routes
 @Composable
 fun BodyKelolaIkan(navController: NavController) {
     val customFontFamily = FontFamily(
-        Font(R.font.bold, FontWeight.Bold),
-        Font(R.font.regular, FontWeight.Normal)
+        Font(R.font.bold, FontWeight.Bold), Font(R.font.regular, FontWeight.Normal)
     )
 
     Column(
         modifier = Modifier
             .clip(
                 RoundedCornerShape(
-                    topStart = 25.dp,
-                    topEnd = 25.dp
+                    topStart = 25.dp, topEnd = 25.dp
                 )
             )
             .background(color = Color(0xFFEFF6FC))
@@ -57,8 +55,7 @@ fun BodyKelolaIkan(navController: NavController) {
             fontFamily = customFontFamily,
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp,
-            modifier = Modifier
-                .padding(top = 16.dp, start = 18.dp)
+            modifier = Modifier.padding(top = 16.dp, start = 18.dp)
         )
         LazyColumn(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -81,23 +78,21 @@ fun BodyKelolaIkan(navController: NavController) {
                         .height(55.dp)
                 ) {
                     Row(
-                        modifier = Modifier
-                            .fillMaxSize(),
+                        modifier = Modifier.fillMaxSize(),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.stokikan),
                             contentDescription = "Stok Ikan",
                             modifier = Modifier
-                                .size(35.dp)
+                                .size(38.dp)
                                 .padding(start = 16.dp)
                         )
                         Text(
                             "Stok Ikan",
-                            fontSize = 14.sp,
+                            fontSize = 16.sp,
                             fontWeight = FontWeight.Normal,
-                            modifier = Modifier
-                                .padding(16.dp)
+                            modifier = Modifier.padding(16.dp)
                         )
                     }
                 }
@@ -112,27 +107,25 @@ fun BodyKelolaIkan(navController: NavController) {
                         .fillMaxWidth()
                         .height(55.dp),
                     onClick = {
-
+                        navController.navigate(Routes.PengingatPanenActivity)
                     },
                 ) {
                     Row(
-                        modifier = Modifier
-                            .fillMaxSize(),
+                        modifier = Modifier.fillMaxSize(),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.jadwalpanen),
                             contentDescription = "Jadwal Panen",
                             modifier = Modifier
-                                .size(35.dp)
+                                .size(38.dp)
                                 .padding(start = 16.dp)
                         )
                         Text(
                             "Jadwal Panen",
-                            fontSize = 14.sp,
+                            fontSize = 16.sp,
                             fontWeight = FontWeight.Normal,
-                            modifier = Modifier
-                                .padding(16.dp)
+                            modifier = Modifier.padding(16.dp)
                         )
                     }
                 }
@@ -147,27 +140,26 @@ fun BodyKelolaIkan(navController: NavController) {
                         .fillMaxWidth()
                         .height(55.dp),
                     onClick = {
+                        navController.navigate(Routes.KematianIkanActivity)
 
                     },
                 ) {
                     Row(
-                        modifier = Modifier
-                            .fillMaxSize(),
+                        modifier = Modifier.fillMaxSize(),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.ripikan),
                             contentDescription = "Kematian Ikan",
                             modifier = Modifier
-                                .size(35.dp)
+                                .size(38.dp)
                                 .padding(start = 16.dp)
                         )
                         Text(
                             "Kematian Ikan",
-                            fontSize = 14.sp,
+                            fontSize = 16.sp,
                             fontWeight = FontWeight.Normal,
-                            modifier = Modifier
-                                .padding(16.dp)
+                            modifier = Modifier.padding(16.dp)
                         )
                     }
                 }

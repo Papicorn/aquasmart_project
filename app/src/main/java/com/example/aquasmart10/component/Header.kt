@@ -23,16 +23,12 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.aquasmart10.R
-
-data class HeaderIcon(
-    val iconRes: Int,
-    val contentDescription: String? = null
-)
+import com.example.aquasmart10.Routes
 
 @Composable
-fun Header() {
-    var isClicked by remember { mutableStateOf(false) }
+fun Header(navController: NavController) {
     val sambutan = "Selamat Datang,"
     var nama = "Hanif"
 
@@ -52,6 +48,9 @@ fun Header() {
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(16.dp)
+                .clickable {
+                    navController.navigate(Routes.NotifikasiActivity)
+                }
         ) {
             BadgedBox(
                 badge = {
@@ -62,7 +61,7 @@ fun Header() {
                     painter = painterResource(id = R.drawable.notif),
                     contentDescription = "Email",
                     tint = Color.White,
-                    modifier = Modifier.size(20.dp)
+                    modifier = Modifier.size(20.dp),
                 )
             }
         }
@@ -103,7 +102,9 @@ fun Header() {
             Image(
                 painter = painterResource(R.drawable.bapak),
                 contentDescription = null,
-                modifier = Modifier.scale(1.7f).padding(bottom = 20.dp, end = 13.dp)
+                modifier = Modifier
+                    .scale(1.7f)
+                    .padding(bottom = 20.dp, end = 13.dp)
 
             )
         }

@@ -5,15 +5,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -62,34 +59,36 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OverviewIkan(navController: NavController) {
+fun EditKematianIkan(navController: NavController) {
     val customFontFamily = FontFamily(
         Font(R.font.bold, FontWeight.Bold), Font(R.font.regular, FontWeight.Normal)
     )
 
-    val listOverviewIkan = listOf("Kolam A-A1", "Kolam B-B1")
-    var selectedTextOverviewIkan by remember { mutableStateOf("-- Pilih Kolam --") }
-    var isExpandedOverviewIkan by remember { mutableStateOf(false) }
+    val listKolam = listOf("Kolam A-A1", "Kolam B-B1")
+    var selectedTextKolam by remember { mutableStateOf("-- Pilih Kolam --") }
+    var isExpandedKolam by remember { mutableStateOf(false) }
 
-    var textValueOverviewIkan by remember { mutableStateOf("") }
-    var submittedValueOverviewIkan by remember { mutableStateOf("") }
+    val listJenis = listOf("Nila Hitam", "Nila Merah")
+    var selectedTextJenis by remember { mutableStateOf("-- Pilih Jenis --") }
+    var isExpandedJenis by remember { mutableStateOf(false) }
+
+
+    var textValueJumlahKematianIkan by remember { mutableStateOf("") }
+    var submittedValueJumlahKematianIkan by remember { mutableStateOf("") }
+
+    var submittedValueLampiranKematianIkan by remember { mutableStateOf("") }
+    var textValueLampiranKematianIkan by remember { mutableStateOf("") }
 
     val focusManager = LocalFocusManager.current
-
-    var intValueOverviewNilaMerah by remember { mutableStateOf("") }
-    var intValueOverviewNilaHitam by remember { mutableStateOf("") }
-    var intValueOverviewBerat by remember { mutableStateOf("") }
+    var intValueJumlah by remember { mutableStateOf("") }
+    var intValueLampiranKematianIkan by remember { mutableStateOf("") }
 
     // Data Pickers
-    var showDatePickerTebarOverview by remember { mutableStateOf(false) }
-    var showDatePickerPanenOverview by remember { mutableStateOf(false) }
-    var selectedDateTebarOverview by remember { mutableStateOf("") }
-    var selectedDatePanenOverview by remember { mutableStateOf("") }
-    var selectedDateTebarMillisOverview by remember { mutableStateOf<Long?>(null) }
-    var selectedDatePanenMillisOverview by remember { mutableStateOf<Long?>(null) }
+    var showDatePickerTanggalKematian by remember { mutableStateOf(false) }
+    var selectedDateKematianIkan by remember { mutableStateOf("") }
+    var selectedDateKematianIkanTambah by remember { mutableStateOf<Long?>(null) }
+    var selectedDatePanenTambah by remember { mutableStateOf<Long?>(null) }
 
-
-    var OverviewLampiran by remember { mutableStateOf("") }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -102,7 +101,7 @@ fun OverviewIkan(navController: NavController) {
             modifier = Modifier.fillMaxSize()
         ) {
             Text(
-                "Stok Ikan Kolam A-A1",
+                "Edit Kematian Ikan",
                 fontFamily = customFontFamily,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
@@ -127,12 +126,12 @@ fun OverviewIkan(navController: NavController) {
                         ExposedDropdownMenuBox(modifier = Modifier
                             .fillMaxWidth()
                             .height(50.dp),
-                            expanded = isExpandedOverviewIkan,
-                            onExpandedChange = { isExpandedOverviewIkan = !isExpandedOverviewIkan }) {
+                            expanded = isExpandedKolam,
+                            onExpandedChange = { isExpandedKolam = !isExpandedKolam }) {
                             TextField(modifier = Modifier
                                 .menuAnchor()
                                 .fillMaxWidth(),
-                                value = selectedTextOverviewIkan,
+                                value = selectedTextKolam,
                                 onValueChange = {},
                                 readOnly = true,
                                 colors = TextFieldDefaults.colors(
@@ -141,14 +140,14 @@ fun OverviewIkan(navController: NavController) {
                                 ),
                                 shape = RoundedCornerShape(12.dp),
                                 trailingIcon = {
-                                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedOverviewIkan)
+                                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedKolam)
                                 })
                             ExposedDropdownMenu(
-                                expanded = isExpandedOverviewIkan,
-                                onDismissRequest = { isExpandedOverviewIkan = false },
+                                expanded = isExpandedKolam,
+                                onDismissRequest = { isExpandedKolam = false },
                                 modifier = Modifier.background(Color.White)
                             ) {
-                                listOverviewIkan.forEachIndexed { index, text ->
+                                listKolam.forEachIndexed { index, text ->
                                     DropdownMenuItem(modifier = Modifier.fillMaxWidth(),
                                         text = {
                                             Text(
@@ -158,8 +157,8 @@ fun OverviewIkan(navController: NavController) {
                                             )
                                         },
                                         onClick = {
-                                            selectedTextOverviewIkan = listOverviewIkan[index]
-                                            isExpandedOverviewIkan = false
+                                            selectedTextKolam = listKolam[index]
+                                            isExpandedKolam = false
                                         },
                                         contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
                                     )
@@ -170,7 +169,59 @@ fun OverviewIkan(navController: NavController) {
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // Tanggal Tebar
+                    Card(
+                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp)
+                    ) {
+                        ExposedDropdownMenuBox(modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
+                            expanded = isExpandedJenis,
+                            onExpandedChange = { isExpandedJenis = !isExpandedJenis }) {
+                            TextField(modifier = Modifier
+                                .menuAnchor()
+                                .fillMaxWidth(),
+                                value = selectedTextJenis,
+                                onValueChange = {},
+                                readOnly = true,
+                                colors = TextFieldDefaults.colors(
+                                    unfocusedContainerColor = Color.White,
+                                    focusedContainerColor = Color.White,
+                                ),
+                                shape = RoundedCornerShape(12.dp),
+                                trailingIcon = {
+                                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedJenis)
+                                })
+                            ExposedDropdownMenu(
+                                expanded = isExpandedJenis,
+                                onDismissRequest = { isExpandedJenis = false },
+                                modifier = Modifier.background(Color.White)
+                            ) {
+                                listJenis.forEachIndexed { index, text ->
+                                    DropdownMenuItem(modifier = Modifier.fillMaxWidth(),
+                                        text = {
+                                            Text(
+                                                text = text,
+                                                fontSize = 14.sp,
+                                                fontFamily = customFontFamily
+                                            )
+                                        },
+                                        onClick = {
+                                            selectedTextJenis = listJenis[index]
+                                            isExpandedJenis = false
+                                        },
+                                        contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
+                                    )
+                                }
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
                     Card(
                         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                         colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
@@ -178,7 +229,7 @@ fun OverviewIkan(navController: NavController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(50.dp)
-                            .clickable { showDatePickerTebarOverview = true },
+                            .clickable { showDatePickerTanggalKematian = true },
                     ) {
                         Row(
                             modifier = Modifier
@@ -187,14 +238,14 @@ fun OverviewIkan(navController: NavController) {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = if (selectedDateTebarOverview.isEmpty()) "Tanggal Tebar" else selectedDateTebarOverview,
+                                text = if (selectedDateKematianIkan.isEmpty()) "Tanggal" else selectedDateKematianIkan,
                                 fontFamily = customFontFamily,
                                 fontSize = 14.sp,
                                 color = Color.Black,
                                 modifier = Modifier.weight(1f)
                             )
                             IconButton(
-                                onClick = { showDatePickerTebarOverview = true },
+                                onClick = { showDatePickerTanggalKematian = true },
                             ) {
                                 Icon(
                                     imageVector = Icons.Filled.CalendarMonth,
@@ -205,73 +256,20 @@ fun OverviewIkan(navController: NavController) {
                         }
                     }
                     // Jadi disini tanggal tebar gabisa duluan dibanding tanggal panen
-                    if (showDatePickerTebarOverview) {
-                        DatePickerModal(onDateSelected = { dateInMillis ->
+                    if (showDatePickerTanggalKematian) {
+                        DatePickerEditRIP(onDateSelected = { dateInMillis ->
                             dateInMillis?.let {
-                                if (selectedDatePanenMillisOverview != null && it > selectedDatePanenMillisOverview!!) {
+                                if (selectedDatePanenTambah != null && it > selectedDatePanenTambah!!) {
                                     // Beri pesan kesalahan atau peringatan kepada pengguna
                                 } else {
-                                    selectedDateTebarMillisOverview = it
-                                    selectedDateTebarOverview = SimpleDateFormat(
+                                    selectedDateKematianIkanTambah = it
+                                    selectedDateKematianIkan = SimpleDateFormat(
                                         "dd/MM/yyyy", Locale.getDefault()
                                     ).format(it)
                                 }
                             }
-                            showDatePickerTebarOverview = false
-                        }, onDismiss = { showDatePickerTebarOverview = false })
-                    }
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    // Tanggal Panen
-                    Card(
-                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
-                        shape = RoundedCornerShape(12.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(50.dp)
-                            .clickable { showDatePickerPanenOverview = true },
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = if (selectedDatePanenOverview.isEmpty()) "Tanggal Panen" else selectedDatePanenOverview,
-                                fontFamily = customFontFamily,
-                                fontSize = 14.sp,
-                                color = Color.Black,
-                                modifier = Modifier.weight(1f)
-                            )
-                            IconButton(
-                                onClick = { showDatePickerPanenOverview = true },
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Filled.CalendarMonth,
-                                    contentDescription = "Edit",
-                                    tint = Color.Black
-                                )
-                            }
-                        }
-                    }
-                    //Tanggal tebar harus duluan, gaboleh tanggal panen duluan
-                    if (showDatePickerPanenOverview) {
-                        DatePickerModal(onDateSelected = { dateInMillis ->
-                            dateInMillis?.let {
-                                if (selectedDateTebarMillisOverview != null && it < selectedDateTebarMillisOverview!!) {
-                                    // Beri pesan kesalahan atau peringatan kepada pengguna
-                                } else {
-                                    selectedDatePanenMillisOverview = it
-                                    selectedDatePanenOverview = SimpleDateFormat(
-                                        "dd/MM/yyyy", Locale.getDefault()
-                                    ).format(it)
-                                }
-                            }
-                            showDatePickerPanenOverview = false
-                        }, onDismiss = { showDatePickerPanenOverview = false })
+                            showDatePickerTanggalKematian = false
+                        }, onDismiss = { showDatePickerTanggalKematian = false })
                     }
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -285,10 +283,10 @@ fun OverviewIkan(navController: NavController) {
                             .fillMaxWidth()
                             .height(50.dp)
                     ) {
-                        TextField(value = intValueOverviewNilaHitam, onValueChange = { newText ->
+                        TextField(value = intValueJumlah, onValueChange = { newText ->
                             // hanya angka yang bisa
                             if (newText.all { it.isDigit() }) {
-                                intValueOverviewNilaMerah = newText
+                                intValueJumlah = newText
                             }
                         }, colors = TextFieldDefaults.colors(
                             unfocusedContainerColor = Color.White,
@@ -297,50 +295,15 @@ fun OverviewIkan(navController: NavController) {
                             unfocusedIndicatorColor = Color.Transparent
                         ), placeholder = {
                             Text(
-                                "Nila Merah",
+                                "Jumlah",
                                 fontFamily = customFontFamily,
                                 fontSize = 14.sp,
                             )
                         }, keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Number, imeAction = ImeAction.Done
                         ), keyboardActions = KeyboardActions(onDone = {
-                            submittedValueOverviewIkan = textValueOverviewIkan  // Simpan nilai saat enter ditekan
-                            focusManager.clearFocus() //ini tu kalo misal udah selesai ngetik trus tekan enter keyboardnya ilang gitu
-                            // Di sini nambahin logika lain yang dibutuhkan
-                            // seperti menyimpan ke database atau memproses nilai
-                        }), modifier = Modifier.fillMaxWidth())
-                    }
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    //Hanya bisa input angka
-                    Card(
-                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
-                        shape = RoundedCornerShape(12.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(50.dp)
-                    ) {
-                        TextField(value = intValueOverviewNilaHitam, onValueChange = { newText ->
-                            // hanya angka yang bisa
-                            if (newText.all { it.isDigit() }) {
-                                intValueOverviewNilaHitam = newText
-                            }
-                        }, colors = TextFieldDefaults.colors(
-                            unfocusedContainerColor = Color.White,
-                            focusedContainerColor = Color.White,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent
-                        ), placeholder = {
-                            Text(
-                                "Nila Hitam",
-                                fontFamily = customFontFamily,
-                                fontSize = 14.sp,
-                            )
-                        }, keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Number, imeAction = ImeAction.Done
-                        ), keyboardActions = KeyboardActions(onDone = {
-                            submittedValueOverviewIkan = textValueOverviewIkan  // Simpan nilai saat enter ditekan
+                            submittedValueJumlahKematianIkan =
+                                textValueJumlahKematianIkan  // Simpan nilai saat enter ditekan
                             focusManager.clearFocus() //ini tu kalo misal udah selesai ngetik trus tekan enter keyboardnya ilang gitu
                             // Di sini nambahin logika lain yang dibutuhkan
                             // seperti menyimpan ke database atau memproses nilai
@@ -348,72 +311,7 @@ fun OverviewIkan(navController: NavController) {
                     }
 
                     Spacer(modifier = Modifier.height(16.dp))
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(IntrinsicSize.Min),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Card(
-                            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                            colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
-                            shape = RoundedCornerShape(12.dp),
-                            modifier = Modifier
-                                .weight(7f)
-                                .height(50.dp)
-                        ) {
-                            Row(
-                                modifier = Modifier.fillMaxSize(),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                // TextField
-                                TextField(value = intValueOverviewBerat, onValueChange = { newText ->
-                                    if (newText.all { it.isDigit() }) {
-                                        intValueOverviewBerat = newText
-                                    }
-                                }, colors = TextFieldDefaults.colors(
-                                    unfocusedContainerColor = Color.White,
-                                    focusedContainerColor = Color.White,
-                                    focusedIndicatorColor = Color.Transparent,
-                                    unfocusedIndicatorColor = Color.Transparent
-                                ), placeholder = {
-                                    Text(
-                                        "Berat",
-                                        fontFamily = customFontFamily,
-                                        fontSize = 14.sp,
-                                    )
-                                }, keyboardOptions = KeyboardOptions(
-                                    keyboardType = KeyboardType.Number,
-                                    imeAction = ImeAction.Done
-                                ), keyboardActions = KeyboardActions(onDone = {
-                                    submittedValueOverviewIkan = textValueOverviewIkan
-                                    focusManager.clearFocus()
-                                }), modifier = Modifier.weight(1f))
 
-                                // Box untuk "meter"
-                                Box(
-                                    modifier = Modifier
-                                        .background(
-                                            Color.LightGray, shape = RoundedCornerShape(
-                                                topEnd = 12.dp, bottomEnd = 12.dp
-                                            )
-                                        )
-                                        .padding(vertical = 12.dp, horizontal = 8.dp)
-                                        .width(75.dp)
-                                        .fillMaxHeight(), contentAlignment = Alignment.Center
-                                ) {
-                                    Text(
-                                        text = "KG",
-                                        color = Color.Black,
-                                        fontSize = 18.sp,
-                                        fontFamily = customFontFamily,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                }
-                            }
-                        }
-                    }
-                    Spacer(modifier = Modifier.height(16.dp))
                     Card(
                         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                         colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
@@ -422,8 +320,8 @@ fun OverviewIkan(navController: NavController) {
                             .fillMaxWidth()
                             .wrapContentHeight()
                     ) {
-                        TextField(value = OverviewLampiran, onValueChange = { newText ->
-                            OverviewLampiran = newText
+                        TextField(value = intValueLampiranKematianIkan, onValueChange = { newText ->
+                            intValueLampiranKematianIkan = newText
                         }, colors = TextFieldDefaults.colors(
                             unfocusedContainerColor = Color.White,
                             focusedContainerColor = Color.White,
@@ -438,7 +336,8 @@ fun OverviewIkan(navController: NavController) {
                         }, keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Text, imeAction = ImeAction.Done
                         ), keyboardActions = KeyboardActions(onDone = {
-                            submittedValueOverviewIkan = textValueOverviewIkan  // Simpan nilai saat enter ditekan
+                            submittedValueLampiranKematianIkan =
+                                textValueLampiranKematianIkan  // Simpan nilai saat enter ditekan
                             focusManager.clearFocus() //ini tu kalo misal udah selesai ngetik trus tekan enter keyboardnya ilang gitu
                             // Di sini nambahin logika lain yang dibutuhkan
                             // seperti menyimpan ke database atau memproses nilai
@@ -452,11 +351,11 @@ fun OverviewIkan(navController: NavController) {
                     ) {
                         Button(
                             onClick = {
-                                navController.navigate(Routes.StokIkanActivity)
+                                navController.navigate(Routes.KematianIkanActivity)
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E7BF9))
                         ) {
-                            Text("Kembali")
+                            Text("Tambah")
                         }
                     }
                 }
@@ -467,7 +366,7 @@ fun OverviewIkan(navController: NavController) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DatePickerModal(
+fun DatePickerEditRIP(
     onDateSelected: (Long?) -> Unit, onDismiss: () -> Unit
 ) {
     val datePickerState = rememberDatePickerState()

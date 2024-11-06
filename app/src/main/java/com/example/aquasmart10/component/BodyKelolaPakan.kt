@@ -74,7 +74,7 @@ fun BodyKelolaPakan(navController: NavController) {
                         containerColor = Color(0xFFFFFFFF),
                     ),
                     onClick = {
-                        navController.navigate(Routes.KelolaPakanActivity)
+                        navController.navigate(Routes.PengingatPakanActivity)
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -94,7 +94,7 @@ fun BodyKelolaPakan(navController: NavController) {
                         )
                         Text(
                             "Jadwal Pemberian Pakan",
-                            fontSize = 14.sp,
+                            fontSize = 16.sp,
                             fontWeight = FontWeight.Normal,
                             modifier = Modifier
                                 .padding(16.dp)
@@ -112,10 +112,10 @@ fun BodyKelolaPakan(navController: NavController) {
                         .fillMaxWidth()
                         .height(55.dp),
                     onClick = {
-
+                        navController.navigate(Routes.StokPakanActivity)
                     },
 
-                ) {
+                    ) {
                     Row(
                         modifier = Modifier
                             .fillMaxSize(),
@@ -130,7 +130,7 @@ fun BodyKelolaPakan(navController: NavController) {
                         )
                         Text(
                             "Stok Pakan",
-                            fontSize = 14.sp,
+                            fontSize = 16.sp,
                             fontWeight = FontWeight.Normal,
                             modifier = Modifier
                                 .padding(16.dp)
@@ -148,7 +148,7 @@ fun BodyKelolaPakan(navController: NavController) {
                         .fillMaxWidth()
                         .height(55.dp),
                     onClick = {
-
+                        navController.navigate(Routes.HitungDosisPakanActivity)
                     },
                 ) {
                     Row(
@@ -165,7 +165,7 @@ fun BodyKelolaPakan(navController: NavController) {
                         )
                         Text(
                             "Penghitung Dosis Pakan",
-                            fontSize = 14.sp,
+                            fontSize = 16.sp,
                             fontWeight = FontWeight.Normal,
                             modifier = Modifier
                                 .padding(16.dp)

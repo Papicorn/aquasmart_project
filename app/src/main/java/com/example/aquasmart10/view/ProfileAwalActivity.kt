@@ -1,33 +1,26 @@
-package com.example.aquasmart10
+package com.example.aquasmart10.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.aquasmart10.component.HeaderKelola
 import com.example.aquasmart10.component.NavbarBottom
-import com.example.aquasmart10.component.NavbarTop
-import com.example.aquasmart10.component.TambahStokIkan
+import com.example.aquasmart10.crud.profile.ProfileAwal
+import com.example.aquasmart10.component.ProfileHeader
 
 @Composable
-fun TambahIkanActivity(navController: NavController) {
+fun ProfileAwalActivity(navController: NavController) {
     Scaffold(
         bottomBar = {
             NavbarBottom(navController)
-        }
-    ) { padding ->
+        },
+
+        ) { padding ->
 
         Column(
             modifier = Modifier
@@ -35,9 +28,8 @@ fun TambahIkanActivity(navController: NavController) {
                 .padding(padding)
                 .background(Color(0xFF5E7BF9))
         ) {
-            NavbarTop()
-            HeaderKelola(navController)
-            TambahStokIkan(navController)
+            ProfileHeader(navController)
+            ProfileAwal(navController)
         }
     }
 }

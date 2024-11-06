@@ -42,8 +42,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -138,6 +140,7 @@ fun EditKematianIkan(navController: NavController) {
                                     unfocusedContainerColor = Color.White,
                                     focusedContainerColor = Color.White,
                                 ),
+                                textStyle = TextStyle(fontFamily = customFontFamily, fontSize = 16.sp),
                                 shape = RoundedCornerShape(12.dp),
                                 trailingIcon = {
                                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedKolam)
@@ -191,6 +194,7 @@ fun EditKematianIkan(navController: NavController) {
                                     unfocusedContainerColor = Color.White,
                                     focusedContainerColor = Color.White,
                                 ),
+                                textStyle = TextStyle(fontFamily = customFontFamily, fontSize = 16.sp),
                                 shape = RoundedCornerShape(12.dp),
                                 trailingIcon = {
                                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedJenis)
@@ -205,7 +209,7 @@ fun EditKematianIkan(navController: NavController) {
                                         text = {
                                             Text(
                                                 text = text,
-                                                fontSize = 14.sp,
+                                                fontSize = 16.sp,
                                                 fontFamily = customFontFamily
                                             )
                                         },
@@ -240,7 +244,7 @@ fun EditKematianIkan(navController: NavController) {
                             Text(
                                 text = if (selectedDateKematianIkan.isEmpty()) "Tanggal" else selectedDateKematianIkan,
                                 fontFamily = customFontFamily,
-                                fontSize = 14.sp,
+                                fontSize = 16.sp,
                                 color = Color.Black,
                                 modifier = Modifier.weight(1f)
                             )
@@ -281,33 +285,45 @@ fun EditKematianIkan(navController: NavController) {
                         shape = RoundedCornerShape(12.dp),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(50.dp)
+                            .wrapContentHeight()
                     ) {
-                        TextField(value = intValueJumlah, onValueChange = { newText ->
-                            // hanya angka yang bisa
-                            if (newText.all { it.isDigit() }) {
-                                intValueJumlah = newText
-                            }
-                        }, colors = TextFieldDefaults.colors(
-                            unfocusedContainerColor = Color.White,
-                            focusedContainerColor = Color.White,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent
-                        ), placeholder = {
-                            Text(
-                                "Jumlah",
-                                fontFamily = customFontFamily,
-                                fontSize = 14.sp,
-                            )
-                        }, keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Number, imeAction = ImeAction.Done
-                        ), keyboardActions = KeyboardActions(onDone = {
-                            submittedValueJumlahKematianIkan =
-                                textValueJumlahKematianIkan  // Simpan nilai saat enter ditekan
-                            focusManager.clearFocus() //ini tu kalo misal udah selesai ngetik trus tekan enter keyboardnya ilang gitu
-                            // Di sini nambahin logika lain yang dibutuhkan
-                            // seperti menyimpan ke database atau memproses nilai
-                        }), modifier = Modifier.fillMaxWidth())
+                        TextField(
+                            value = intValueJumlah,
+                            onValueChange = { intValueJumlah = it },
+                            label = {
+                                Text(
+                                    text = "Jumlah",
+                                    fontFamily = customFontFamily
+                                )
+                            },
+                            placeholder = { Text("Isi Jumlah Kematian Ikan") },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .shadow(
+                                    4.dp, shape = RoundedCornerShape(
+                                        topStart = 15.dp,
+                                        topEnd = 15.dp,
+                                        bottomStart = 15.dp,
+                                        bottomEnd = 15.dp
+                                    )
+                                ),
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = Color.White,
+                                unfocusedContainerColor = Color.White,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                                focusedTextColor = Color.Black,
+                                unfocusedTextColor = Color.Black
+                            ),
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Done
+                            ),
+                            keyboardActions = KeyboardActions(onDone = {
+                                submittedValueJumlahKematianIkan = intValueJumlah
+                                focusManager.clearFocus()
+                            })
+                        )
                     }
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -320,28 +336,43 @@ fun EditKematianIkan(navController: NavController) {
                             .fillMaxWidth()
                             .wrapContentHeight()
                     ) {
-                        TextField(value = intValueLampiranKematianIkan, onValueChange = { newText ->
-                            intValueLampiranKematianIkan = newText
-                        }, colors = TextFieldDefaults.colors(
-                            unfocusedContainerColor = Color.White,
-                            focusedContainerColor = Color.White,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent
-                        ), placeholder = {
-                            Text(
-                                "Lampiran",
-                                fontFamily = customFontFamily,
-                                fontSize = 14.sp,
-                            )
-                        }, keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Text, imeAction = ImeAction.Done
-                        ), keyboardActions = KeyboardActions(onDone = {
-                            submittedValueLampiranKematianIkan =
-                                textValueLampiranKematianIkan  // Simpan nilai saat enter ditekan
-                            focusManager.clearFocus() //ini tu kalo misal udah selesai ngetik trus tekan enter keyboardnya ilang gitu
-                            // Di sini nambahin logika lain yang dibutuhkan
-                            // seperti menyimpan ke database atau memproses nilai
-                        }), modifier = Modifier.fillMaxWidth())
+                        TextField(
+                            value = intValueLampiranKematianIkan,
+                            onValueChange = { intValueLampiranKematianIkan = it },
+                            label = {
+                                Text(
+                                    text = "Lampiran",
+                                    fontFamily = customFontFamily
+                                )
+                            },
+                            placeholder = { Text("Isi lampiran disini") },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .shadow(
+                                    4.dp, shape = RoundedCornerShape(
+                                        topStart = 15.dp,
+                                        topEnd = 15.dp,
+                                        bottomStart = 15.dp,
+                                        bottomEnd = 15.dp
+                                    )
+                                ),
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = Color.White,
+                                unfocusedContainerColor = Color.White,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                                focusedTextColor = Color.Black,
+                                unfocusedTextColor = Color.Black
+                            ),
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Text,
+                                imeAction = ImeAction.Done
+                            ),
+                            keyboardActions = KeyboardActions(onDone = {
+                                submittedValueLampiranKematianIkan = intValueLampiranKematianIkan
+                                focusManager.clearFocus()
+                            })
+                        )
                     }
                     Row(
                         modifier = Modifier
@@ -355,7 +386,7 @@ fun EditKematianIkan(navController: NavController) {
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E7BF9))
                         ) {
-                            Text("Tambah")
+                            Text("Simpan", fontWeight = FontWeight.SemiBold, fontFamily = customFontFamily)
                         }
                     }
                 }

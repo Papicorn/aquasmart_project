@@ -129,7 +129,7 @@ fun BodyMain(navController: NavController) {
                                 spotColor = Color.Black.copy(alpha = 0.5f)
                             ),
                         onClick = {
-
+                            navController.navigate(Routes.KolamIkanScreen)
                         },
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)

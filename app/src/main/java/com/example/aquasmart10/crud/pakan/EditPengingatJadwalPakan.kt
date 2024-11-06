@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth
@@ -45,6 +46,10 @@ import androidx.compose.ui.unit.sp
 import com.example.aquasmart10.R
 import androidx.compose.material3.*
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -76,6 +81,10 @@ fun EditJadwalPakanBody(navController: NavController) {
     //dosis pakan
     var dosisPakan by remember { mutableStateOf("") }
 
+    val focusManager = LocalFocusManager.current
+    var submittedValueEditJadwalPakan by remember { mutableStateOf("") }
+    var intValueEditJadwalPakan by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .clip(RoundedCornerShape(topStart = 25.dp, topEnd = 25.dp))
@@ -88,7 +97,7 @@ fun EditJadwalPakanBody(navController: NavController) {
         ) {
             Column {
                 Text(
-                    text = "Edit Pakan",
+                    text = "Edit Jadwal Pakan",
                     fontFamily = customFontFamily,
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
@@ -133,6 +142,7 @@ fun EditJadwalPakanBody(navController: NavController) {
                                         unfocusedContainerColor = Color.White,
                                         focusedContainerColor = Color.White,
                                     ),
+                                    textStyle = TextStyle(fontSize = 16.sp, fontFamily = customFontFamily),
                                     shape = RoundedCornerShape(15.dp),
                                     trailingIcon = {
                                         ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded)
@@ -188,7 +198,7 @@ fun EditJadwalPakanBody(navController: NavController) {
                                 Text(
                                     text = if (selectedDateTanggalJadwalPakan.isEmpty()) "Tanggal Tebar" else selectedDateTanggalJadwalPakan,
                                     fontFamily = customFontFamily,
-                                    fontSize = 14.sp,
+                                    fontSize = 16.sp,
                                     color = Color.Black,
                                     modifier = Modifier.weight(1f)
                                 )
@@ -218,7 +228,6 @@ fun EditJadwalPakanBody(navController: NavController) {
                                 onDismiss = { showDateTanggalJadwalPakan = false }
                             )
                         }
-
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth(),
@@ -247,60 +256,78 @@ fun EditJadwalPakanBody(navController: NavController) {
                                 .height(IntrinsicSize.Min),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            TextField(
-                                value = dosisPakan,
-                                onValueChange = { dosisPakan = it },
-                                label = {
-                                    Text(
-                                        text = "Dosis Pakan",
-                                        fontFamily = customFontFamily
-                                    )
-                                },
-                                placeholder = {
-                                    Text("Masukkan nilai dosis pakan")
-                                },
+                            Card(
+                                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                                colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
+                                shape = RoundedCornerShape(12.dp),
                                 modifier = Modifier
+                                    .weight(7f)
                                     .height(50.dp)
-                                    .shadow(4.dp, shape = RoundedCornerShape(
-                                        topStart = 15.dp,
-                                        bottomStart = 15.dp
-                                    )
-                                    ),
-                                colors = TextFieldDefaults.colors(
-                                    focusedContainerColor = Color.White,
-                                    unfocusedContainerColor = Color.White,
-                                    focusedIndicatorColor = Color.Transparent,
-                                    unfocusedIndicatorColor = Color.Transparent,
-                                    focusedTextColor = Color.Black,
-                                    unfocusedTextColor = Color.Black
-                                ),
-                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                            )
-
-                            Box(
-                                modifier = Modifier
-                                    .shadow(
-                                        5.dp, shape = RoundedCornerShape(
-                                            topEnd = 15.dp,
-                                            bottomEnd = 15.dp
-                                        )
-                                    )
-                                    .background(Color.LightGray)
-                                    .padding(vertical = 12.dp, horizontal = 8.dp)
-                                    .width(75.dp)
-                                    .fillMaxHeight(),
-                                contentAlignment = Alignment.Center
-
                             ) {
-                                Text(
-                                    text = "kg",
-                                    color = Color.Black,
-                                    fontSize = 18.sp,
-                                    fontFamily = customFontFamily,
-                                    fontWeight = FontWeight.Bold,
+                                Row(
                                     modifier = Modifier
-
-                                )
+                                        .fillMaxWidth()
+                                        .height(IntrinsicSize.Min),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    TextField(
+                                        value = intValueEditJadwalPakan,
+                                        onValueChange = { intValueEditJadwalPakan = it },
+                                        label = {
+                                            Text(
+                                                text = "Berat",
+                                                fontFamily = customFontFamily
+                                            )
+                                        },
+                                        placeholder = { Text("Masukkan Berat Ikan") },
+                                        modifier = Modifier
+                                            .weight(1f)
+                                            .shadow(
+                                                4.dp, shape = RoundedCornerShape(
+                                                    topStart = 15.dp,
+                                                    bottomStart = 15.dp
+                                                )
+                                            ),
+                                        colors = TextFieldDefaults.colors(
+                                            focusedContainerColor = Color.White,
+                                            unfocusedContainerColor = Color.White,
+                                            focusedIndicatorColor = Color.Transparent,
+                                            unfocusedIndicatorColor = Color.Transparent,
+                                            focusedTextColor = Color.Black,
+                                            unfocusedTextColor = Color.Black
+                                        ),
+                                        keyboardOptions = KeyboardOptions(
+                                            keyboardType = KeyboardType.Number,
+                                            imeAction = ImeAction.Done
+                                        ),
+                                        keyboardActions = KeyboardActions(onDone = {
+                                            submittedValueEditJadwalPakan = intValueEditJadwalPakan
+                                            focusManager.clearFocus()
+                                        })
+                                    )
+                                    Box(
+                                        modifier = Modifier
+                                            .shadow(
+                                                5.dp, shape = RoundedCornerShape(
+                                                    topEnd = 15.dp,
+                                                    bottomEnd = 15.dp
+                                                )
+                                            )
+                                            .background(Color.LightGray)
+                                            .padding(vertical = 12.dp, horizontal = 8.dp)
+                                            .width(75.dp)
+                                            .fillMaxHeight(),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Text(
+                                            text = "KG",
+                                            color = Color.Black,
+                                            fontSize = 18.sp,
+                                            fontFamily = customFontFamily,
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                    }
+                                }
                             }
                         }
                         Button(
@@ -314,6 +341,7 @@ fun EditJadwalPakanBody(navController: NavController) {
                                 text = "Simpan",
                                 fontFamily = customFontFamily,
                                 fontSize = 16.sp,
+                                fontWeight = FontWeight.SemiBold,
                                 color = Color.White,
                                 modifier = Modifier
                                     .padding(3.dp)

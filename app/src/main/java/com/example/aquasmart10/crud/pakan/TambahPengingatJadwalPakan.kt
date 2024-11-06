@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth
@@ -47,6 +48,9 @@ import androidx.compose.ui.unit.sp
 import com.example.aquasmart10.R
 import androidx.compose.material3.*
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import com.example.aquasmart10.ui.theme.AquaSmart10Theme
 import java.text.SimpleDateFormat
@@ -61,18 +65,12 @@ fun TambahJadwalPakanBody(navController: NavController) {
         Font(R.font.bold, FontWeight.Bold),
         Font(R.font.regular, FontWeight.Normal)
     )
-
-    var jenisPakan by remember { mutableStateOf("") }
-    var namaPakan by remember { mutableStateOf("") }
-    var stok by remember { mutableStateOf("") }
-
     //pilih kolam
     var isExpanded by remember { mutableStateOf(false) }
     var selectedOption by remember { mutableStateOf("--Pilih Kolam--") }
     val listKolam = listOf("Kolam 1", "kolam 2", "Kolam 3")
 
     //tentukan tanggal jadwal pakan
-    var selectedDate by remember { mutableStateOf("Pilih Tanggal") }
     var showDateTanggalJadwalPakan by remember { mutableStateOf(false) }
     var selectedDateTanggalJadwalPakan by remember { mutableStateOf("") }
     var selectedDateTambahTanggalJadwalPakan by remember { mutableStateOf<Long?>(null) }
@@ -80,8 +78,11 @@ fun TambahJadwalPakanBody(navController: NavController) {
     //check box
     var isChecked by remember { mutableStateOf(false) }
 
+
+    val focusManager = LocalFocusManager.current
     //dosis pakan
-    var dosisPakan by remember { mutableStateOf("") }
+    var submittedValueTambahJadwalPakan by remember { mutableStateOf("") }
+    var intValueTambahPakan by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -95,7 +96,7 @@ fun TambahJadwalPakanBody(navController: NavController) {
         ) {
             Column {
                 Text(
-                    text = "Tambah Pakan",
+                    text = "Tambah Jadwal Pakan",
                     fontFamily = customFontFamily,
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
@@ -140,6 +141,7 @@ fun TambahJadwalPakanBody(navController: NavController) {
                                         unfocusedContainerColor = Color.White,
                                         focusedContainerColor = Color.White,
                                     ),
+                                    textStyle = TextStyle(fontSize = 16.sp, fontFamily = customFontFamily),
                                     shape = RoundedCornerShape(15.dp),
                                     trailingIcon = {
                                         ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded)
@@ -158,7 +160,7 @@ fun TambahJadwalPakanBody(navController: NavController) {
                                             text = {
                                                 Text(
                                                     text = text,
-                                                    fontSize = 14.sp,
+                                                    fontSize = 16.sp,
                                                     fontFamily = customFontFamily,
                                                     color = Color.Black
                                                 )
@@ -195,7 +197,7 @@ fun TambahJadwalPakanBody(navController: NavController) {
                                 Text(
                                     text = if (selectedDateTanggalJadwalPakan.isEmpty()) "Tanggal Tebar" else selectedDateTanggalJadwalPakan,
                                     fontFamily = customFontFamily,
-                                    fontSize = 14.sp,
+                                    fontSize = 16.sp,
                                     color = Color.Black,
                                     modifier = Modifier.weight(1f)
                                 )
@@ -254,60 +256,78 @@ fun TambahJadwalPakanBody(navController: NavController) {
                                 .height(IntrinsicSize.Min),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            TextField(
-                                value = dosisPakan,
-                                onValueChange = { dosisPakan = it },
-                                label = {
-                                    Text(
-                                        text = "Dosis Pakan",
-                                        fontFamily = customFontFamily
-                                    )
-                                },
-                                placeholder = {
-                                    Text("Masukkan nilai dosis pakan")
-                                },
+                            Card(
+                                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                                colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
+                                shape = RoundedCornerShape(12.dp),
                                 modifier = Modifier
+                                    .weight(7f)
                                     .height(50.dp)
-                                    .shadow(4.dp, shape = RoundedCornerShape(
-                                        topStart = 15.dp,
-                                        bottomStart = 15.dp
-                                    )
-                                    ),
-                                colors = TextFieldDefaults.colors(
-                                    focusedContainerColor = Color.White,
-                                    unfocusedContainerColor = Color.White,
-                                    focusedIndicatorColor = Color.Transparent,
-                                    unfocusedIndicatorColor = Color.Transparent,
-                                    focusedTextColor = Color.Black,
-                                    unfocusedTextColor = Color.Black
-                                ),
-                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                            )
-
-                            Box(
-                                modifier = Modifier
-                                    .shadow(
-                                        5.dp, shape = RoundedCornerShape(
-                                            topEnd = 15.dp,
-                                            bottomEnd = 15.dp
-                                        )
-                                    )
-                                    .background(Color.LightGray)
-                                    .padding(vertical = 12.dp, horizontal = 8.dp)
-                                    .width(75.dp)
-                                    .fillMaxHeight(),
-                                contentAlignment = Alignment.Center
-
                             ) {
-                                Text(
-                                    text = "kg",
-                                    color = Color.Black,
-                                    fontSize = 18.sp,
-                                    fontFamily = customFontFamily,
-                                    fontWeight = FontWeight.Bold,
+                                Row(
                                     modifier = Modifier
-
-                                )
+                                        .fillMaxWidth()
+                                        .height(IntrinsicSize.Min),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    TextField(
+                                        value = intValueTambahPakan,
+                                        onValueChange = { intValueTambahPakan = it },
+                                        label = {
+                                            Text(
+                                                text = "Berat",
+                                                fontFamily = customFontFamily
+                                            )
+                                        },
+                                        placeholder = { Text("Masukkan Berat Ikan") },
+                                        modifier = Modifier
+                                            .weight(1f)
+                                            .shadow(
+                                                4.dp, shape = RoundedCornerShape(
+                                                    topStart = 15.dp,
+                                                    bottomStart = 15.dp
+                                                )
+                                            ),
+                                        colors = TextFieldDefaults.colors(
+                                            focusedContainerColor = Color.White,
+                                            unfocusedContainerColor = Color.White,
+                                            focusedIndicatorColor = Color.Transparent,
+                                            unfocusedIndicatorColor = Color.Transparent,
+                                            focusedTextColor = Color.Black,
+                                            unfocusedTextColor = Color.Black
+                                        ),
+                                        keyboardOptions = KeyboardOptions(
+                                            keyboardType = KeyboardType.Number,
+                                            imeAction = ImeAction.Done
+                                        ),
+                                        keyboardActions = KeyboardActions(onDone = {
+                                            submittedValueTambahJadwalPakan = intValueTambahPakan
+                                            focusManager.clearFocus()
+                                        })
+                                    )
+                                    Box(
+                                        modifier = Modifier
+                                            .shadow(
+                                                5.dp, shape = RoundedCornerShape(
+                                                    topEnd = 15.dp,
+                                                    bottomEnd = 15.dp
+                                                )
+                                            )
+                                            .background(Color.LightGray)
+                                            .padding(vertical = 12.dp, horizontal = 8.dp)
+                                            .width(75.dp)
+                                            .fillMaxHeight(),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Text(
+                                            text = "KG",
+                                            color = Color.Black,
+                                            fontSize = 18.sp,
+                                            fontFamily = customFontFamily,
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                    }
+                                }
                             }
                         }
                         Button(
@@ -321,6 +341,7 @@ fun TambahJadwalPakanBody(navController: NavController) {
                                 text = "Tambah",
                                 fontFamily = customFontFamily,
                                 fontSize = 16.sp,
+                                fontWeight = FontWeight.SemiBold,
                                 color = Color.White,
                                 modifier = Modifier
                                     .padding(3.dp)

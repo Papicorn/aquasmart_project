@@ -30,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.Font
@@ -102,35 +103,41 @@ fun EditProfile(navController: NavController) {
                             .wrapContentHeight()
                     ) {
                         TextField(
-                            value = ValueNamaLengkap,
-                            onValueChange = { newText ->
-                                ValueNamaLengkap = newText
-                            },
-                            colors = TextFieldDefaults.colors(
-                                unfocusedContainerColor = Color.White,
-                                focusedContainerColor = Color.White,
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent
-                            ),
-                            placeholder = {
+                            value = textValueNamaLengkap,
+                            onValueChange = { textValueNamaLengkap = it },
+                            label = {
                                 Text(
-                                    "Nama Lengkap",
-                                    fontFamily = customFontFamily,
-                                    fontSize = 14.sp,
+                                    text = "Nama Lengkap",
+                                    fontFamily = customFontFamily
                                 )
                             },
+                            placeholder = { Text("Isi Nama lengkap disini") },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .shadow(
+                                    4.dp, shape = RoundedCornerShape(
+                                        topStart = 15.dp,
+                                        topEnd = 15.dp,
+                                        bottomStart = 15.dp,
+                                        bottomEnd = 15.dp
+                                    )
+                                ),
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = Color.White,
+                                unfocusedContainerColor = Color.White,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                                focusedTextColor = Color.Black,
+                                unfocusedTextColor = Color.Black
+                            ),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Text,
                                 imeAction = ImeAction.Done
                             ),
-                            keyboardActions = KeyboardActions(
-                                onDone = {
-                                    submittedValueNamaLengkap =
-                                        textValueNamaLengkap
-                                    focusManager.clearFocus()
-                                }
-                            ),
-                            modifier = Modifier.fillMaxWidth()
+                            keyboardActions = KeyboardActions(onDone = {
+                                submittedValueNamaLengkap = textValueNamaLengkap
+                                focusManager.clearFocus()
+                            })
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
@@ -143,35 +150,41 @@ fun EditProfile(navController: NavController) {
                             .wrapContentHeight()
                     ) {
                         TextField(
-                            value = ValueLokasiBioflok,
-                            onValueChange = { newText ->
-                                ValueLokasiBioflok = newText
-                            },
-                            colors = TextFieldDefaults.colors(
-                                unfocusedContainerColor = Color.White,
-                                focusedContainerColor = Color.White,
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent
-                            ),
-                            placeholder = {
+                            value = textValueLokasiBioflok,
+                            onValueChange = { textValueLokasiBioflok = it },
+                            label = {
                                 Text(
-                                    "Lokasi Bioflok",
-                                    fontFamily = customFontFamily,
-                                    fontSize = 14.sp,
+                                    text = "Lokasi Bioflok",
+                                    fontFamily = customFontFamily
                                 )
                             },
+                            placeholder = { Text("Isi Lokasi disini") },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .shadow(
+                                    4.dp, shape = RoundedCornerShape(
+                                        topStart = 15.dp,
+                                        topEnd = 15.dp,
+                                        bottomStart = 15.dp,
+                                        bottomEnd = 15.dp
+                                    )
+                                ),
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = Color.White,
+                                unfocusedContainerColor = Color.White,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                                focusedTextColor = Color.Black,
+                                unfocusedTextColor = Color.Black
+                            ),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Text,
                                 imeAction = ImeAction.Done
                             ),
-                            keyboardActions = KeyboardActions(
-                                onDone = {
-                                    submittedValueLokasiBioflok =
-                                        textValueLokasiBioflok
-                                    focusManager.clearFocus()
-                                }
-                            ),
-                            modifier = Modifier.fillMaxWidth()
+                            keyboardActions = KeyboardActions(onDone = {
+                                submittedValueLokasiBioflok = textValueLokasiBioflok
+                                focusManager.clearFocus()
+                            })
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
@@ -184,35 +197,41 @@ fun EditProfile(navController: NavController) {
                             .wrapContentHeight()
                     ) {
                         TextField(
-                            value = ValueEmail,
-                            onValueChange = { newText ->
-                                ValueEmail = newText
-                            },
-                            colors = TextFieldDefaults.colors(
-                                unfocusedContainerColor = Color.White,
-                                focusedContainerColor = Color.White,
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent
-                            ),
-                            placeholder = {
+                            value = textValueEmail,
+                            onValueChange = { textValueEmail = it },
+                            label = {
                                 Text(
-                                    "Email",
-                                    fontFamily = customFontFamily,
-                                    fontSize = 14.sp,
+                                    text = "Email",
+                                    fontFamily = customFontFamily
                                 )
                             },
+                            placeholder = { Text("Isi Email disini") },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .shadow(
+                                    4.dp, shape = RoundedCornerShape(
+                                        topStart = 15.dp,
+                                        topEnd = 15.dp,
+                                        bottomStart = 15.dp,
+                                        bottomEnd = 15.dp
+                                    )
+                                ),
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = Color.White,
+                                unfocusedContainerColor = Color.White,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                                focusedTextColor = Color.Black,
+                                unfocusedTextColor = Color.Black
+                            ),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Text,
                                 imeAction = ImeAction.Done
                             ),
-                            keyboardActions = KeyboardActions(
-                                onDone = {
-                                    submittedValueEmail =
-                                        textValueEmail
-                                    focusManager.clearFocus()
-                                }
-                            ),
-                            modifier = Modifier.fillMaxWidth()
+                            keyboardActions = KeyboardActions(onDone = {
+                                submittedValueEmail = textValueEmail
+                                focusManager.clearFocus()
+                            })
                         )
                     }
                     Row(
@@ -227,7 +246,7 @@ fun EditProfile(navController: NavController) {
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E7BF9))
                         ) {
-                            Text("Simpan")
+                            Text("Simpan", fontFamily = customFontFamily, fontWeight = FontWeight.SemiBold)
                         }
                     }
                 }

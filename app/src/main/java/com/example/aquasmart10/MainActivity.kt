@@ -24,6 +24,7 @@ import com.example.aquasmart10.view.KelolaActivity
 import com.example.aquasmart10.view.KelolaPakanActivity
 import com.example.aquasmart10.view.KematianIkanActivity
 import com.example.aquasmart10.view.KolamIkanScreen
+import com.example.aquasmart10.view.LoginScreen
 import com.example.aquasmart10.view.NotifikasiActivity
 import com.example.aquasmart10.view.OverviewProfileActivity
 import com.example.aquasmart10.view.OverviewStokIkan
@@ -49,7 +50,7 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             NavHost(
                 navController = navController,
-                startDestination = Routes.BerandaActivity,
+                startDestination = Routes.LoginScreen,
                 enterTransition = { EnterTransition.None },
                 exitTransition = { ExitTransition.None }
             ) {
@@ -248,6 +249,13 @@ class MainActivity : ComponentActivity() {
                     exitTransition = { ExitTransition.None }
                 ) {
                     TambahJadwalPakanActivity(navController)
+                }
+                composable(
+                    route = Routes.LoginScreen,
+                    enterTransition = { EnterTransition.None },
+                    exitTransition = { ExitTransition.None }
+                ) {
+                    LoginScreen(navController)
                 }
             }
         }

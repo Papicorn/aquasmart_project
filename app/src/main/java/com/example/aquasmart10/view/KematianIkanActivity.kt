@@ -31,7 +31,7 @@ fun KematianIkanActivity(navController: NavController) {
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navController.navigate(Routes.TambahIkanActivity) },
+                onClick = { navController.navigate(Routes.TambahKematianIkanActivity) },
                 modifier = Modifier
                     .size(60.dp)
                     .shadow(4.dp, shape = RoundedCornerShape(15.dp)),

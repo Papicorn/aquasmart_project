@@ -14,9 +14,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -30,9 +33,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,12 +53,15 @@ fun TambahKolamBody(navController: NavController) {
         Font(R.font.regular, FontWeight.Normal)
     )
 
+    val focusManager = LocalFocusManager.current
+
     var namaAwalanKolam by remember { mutableStateOf("") }
     var namaKolam by remember { mutableStateOf("") }
     var kapasitas by remember { mutableStateOf("") }
-    var diameter by remember { mutableStateOf("") }
-    var kedalaman by remember { mutableStateOf("") }
-    var phAir by remember { mutableStateOf("") }
+    var phAirPagi by remember { mutableStateOf("") }
+    var submittedValueTambahKolam by remember { mutableStateOf("") }
+    var intValueTambahKolamDiameter by remember { mutableStateOf("") }
+    var intValueTambahKolamKedalaman by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -69,7 +77,7 @@ fun TambahKolamBody(navController: NavController) {
             item {
                 Column {
                     Text(
-                        text = "Tambah Kolam",
+                        text = "Edit Kolam",
                         fontFamily = customFontFamily,
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp,
@@ -88,7 +96,7 @@ fun TambahKolamBody(navController: NavController) {
                                 fontFamily = customFontFamily
                             )
                         },
-                        placeholder = { Text("Masukkan nama awalan kolam") },
+                        placeholder = { Text("Edit nama awalan kolam") },
                         modifier = Modifier
                             .fillMaxWidth()
                             .shadow(
@@ -106,7 +114,15 @@ fun TambahKolamBody(navController: NavController) {
                             unfocusedIndicatorColor = Color.Transparent,
                             focusedTextColor = Color.Black,
                             unfocusedTextColor = Color.Black
-                        )
+                        ),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Text,
+                            imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(onDone = {
+                            submittedValueTambahKolam = namaAwalanKolam
+                            focusManager.clearFocus()
+                        })
                     )
 
                     Spacer(modifier = Modifier.height(20.dp))
@@ -121,7 +137,7 @@ fun TambahKolamBody(navController: NavController) {
                                 fontFamily = customFontFamily
                             )
                         },
-                        placeholder = { Text("Masukkan nama Kolam") },
+                        placeholder = { Text("Edit nama Kolam") },
                         modifier = Modifier
                             .fillMaxWidth()
                             .shadow(
@@ -139,7 +155,15 @@ fun TambahKolamBody(navController: NavController) {
                             unfocusedIndicatorColor = Color.Transparent,
                             focusedTextColor = Color.Black,
                             unfocusedTextColor = Color.Black
-                        )
+                        ),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Text,
+                            imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(onDone = {
+                            submittedValueTambahKolam = namaKolam
+                            focusManager.clearFocus()
+                        })
                     )
 
                     Spacer(modifier = Modifier.height(20.dp))
@@ -154,7 +178,7 @@ fun TambahKolamBody(navController: NavController) {
                                 fontFamily = customFontFamily
                             )
                         },
-                        placeholder = { Text("Masukkan jumlah kapasitas") },
+                        placeholder = { Text("Edit jumlah kapasitas") },
                         modifier = Modifier
                             .fillMaxWidth()
                             .shadow(
@@ -172,7 +196,15 @@ fun TambahKolamBody(navController: NavController) {
                             unfocusedIndicatorColor = Color.Transparent,
                             focusedTextColor = Color.Black,
                             unfocusedTextColor = Color.Black
-                        )
+                        ),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Text,
+                            imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(onDone = {
+                            submittedValueTambahKolam = kapasitas
+                            focusManager.clearFocus()
+                        })
                     )
 
                     Spacer(modifier = Modifier.height(20.dp))
@@ -184,61 +216,78 @@ fun TambahKolamBody(navController: NavController) {
                             .height(IntrinsicSize.Min),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        TextField(
-                            value = diameter,
-                            onValueChange = { diameter = it },
-                            label = {
-                                Text(
-                                    text = "Diameter",
-                                    fontFamily = customFontFamily
-                                )
-                            },
-                            placeholder = {
-                                Text("Masukkan nilai diameter")
-                            },
+                        Card(
+                            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                            colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
+                            shape = RoundedCornerShape(12.dp),
                             modifier = Modifier
-                                .weight(1f)
-                                .shadow(
-                                    4.dp, shape = RoundedCornerShape(
-                                        topStart = 15.dp,
-                                        bottomStart = 15.dp
-                                    )
-                                ),
-                            colors = TextFieldDefaults.colors(
-                                focusedContainerColor = Color.White,
-                                unfocusedContainerColor = Color.White,
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent,
-                                focusedTextColor = Color.Black,
-                                unfocusedTextColor = Color.Black
-                            ),
-                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                        )
-
-                        Box(
-                            modifier = Modifier
-                                .shadow(
-                                    5.dp, shape = RoundedCornerShape(
-                                        topEnd = 15.dp,
-                                        bottomEnd = 15.dp
-                                    )
-                                )
-                                .background(Color.LightGray)
-                                .padding(vertical = 12.dp, horizontal = 8.dp)
-                                .width(75.dp)
-                                .fillMaxHeight(),
-                            contentAlignment = Alignment.Center
-
+                                .weight(7f)
+                                .height(55.dp)
                         ) {
-                            Text(
-                                text = "meter",
-                                color = Color.Black,
-                                fontSize = 18.sp,
-                                fontFamily = customFontFamily,
-                                fontWeight = FontWeight.Bold,
+                            Row(
                                 modifier = Modifier
-
-                            )
+                                    .fillMaxWidth()
+                                    .height(IntrinsicSize.Min),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                TextField(
+                                    value = intValueTambahKolamDiameter,
+                                    onValueChange = { intValueTambahKolamDiameter = it },
+                                    label = {
+                                        Text(
+                                            text = "Diameter",
+                                            fontFamily = customFontFamily
+                                        )
+                                    },
+                                    placeholder = { Text("Masukkan Diameter Kolam") },
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .shadow(
+                                            4.dp, shape = RoundedCornerShape(
+                                                topStart = 15.dp,
+                                                bottomStart = 15.dp
+                                            )
+                                        ),
+                                    colors = TextFieldDefaults.colors(
+                                        focusedContainerColor = Color.White,
+                                        unfocusedContainerColor = Color.White,
+                                        focusedIndicatorColor = Color.Transparent,
+                                        unfocusedIndicatorColor = Color.Transparent,
+                                        focusedTextColor = Color.Black,
+                                        unfocusedTextColor = Color.Black
+                                    ),
+                                    keyboardOptions = KeyboardOptions(
+                                        keyboardType = KeyboardType.Number,
+                                        imeAction = ImeAction.Done
+                                    ),
+                                    keyboardActions = KeyboardActions(onDone = {
+                                        submittedValueTambahKolam = intValueTambahKolamDiameter
+                                        focusManager.clearFocus()
+                                    })
+                                )
+                                Box(
+                                    modifier = Modifier
+                                        .shadow(
+                                            5.dp, shape = RoundedCornerShape(
+                                                topEnd = 15.dp,
+                                                bottomEnd = 15.dp
+                                            )
+                                        )
+                                        .background(Color.LightGray)
+                                        .padding(vertical = 12.dp, horizontal = 8.dp)
+                                        .width(75.dp)
+                                        .fillMaxHeight(),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        text = "KG",
+                                        color = Color.Black,
+                                        fontSize = 18.sp,
+                                        fontFamily = customFontFamily,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                            }
                         }
                     }
 
@@ -251,76 +300,93 @@ fun TambahKolamBody(navController: NavController) {
                             .height(IntrinsicSize.Min),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        TextField(
-                            value = kedalaman,
-                            onValueChange = { kedalaman = it },
-                            label = {
-                                Text(
-                                    text = "Kedalaman",
-                                    fontFamily = customFontFamily
-                                )
-                            },
-                            placeholder = {
-                                Text("Masukkan nilai Kedalaman")
-                            },
+                        Card(
+                            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                            colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
+                            shape = RoundedCornerShape(12.dp),
                             modifier = Modifier
-                                .weight(1f)
-                                .shadow(
-                                    4.dp, shape = RoundedCornerShape(
-                                        topStart = 15.dp,
-                                        bottomStart = 15.dp
-                                    )
-                                ),
-                            colors = TextFieldDefaults.colors(
-                                focusedContainerColor = Color.White,
-                                unfocusedContainerColor = Color.White,
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent,
-                                focusedTextColor = Color.Black,
-                                unfocusedTextColor = Color.Black
-                            ),
-                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                        )
-
-                        Box(
-                            modifier = Modifier
-                                .shadow(
-                                    5.dp, shape = RoundedCornerShape(
-                                        topEnd = 15.dp,
-                                        bottomEnd = 15.dp
-                                    )
-                                )
-                                .background(Color.LightGray)
-                                .padding(vertical = 12.dp, horizontal = 8.dp)
-                                .width(75.dp)
-                                .fillMaxHeight(),
-                            contentAlignment = Alignment.Center
-
+                                .weight(7f)
+                                .height(55.dp)
                         ) {
-                            Text(
-                                text = "meter",
-                                color = Color.Black,
-                                fontSize = 18.sp,
-                                fontFamily = customFontFamily,
-                                fontWeight = FontWeight.Bold,
+                            Row(
                                 modifier = Modifier
-
-                            )
+                                    .fillMaxWidth()
+                                    .height(IntrinsicSize.Min),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                TextField(
+                                    value = intValueTambahKolamKedalaman,
+                                    onValueChange = { intValueTambahKolamKedalaman= it },
+                                    label = {
+                                        Text(
+                                            text = "Kedalaman",
+                                            fontFamily = customFontFamily
+                                        )
+                                    },
+                                    placeholder = { Text("Masukkan Kedalaman Kolam") },
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .shadow(
+                                            4.dp, shape = RoundedCornerShape(
+                                                topStart = 15.dp,
+                                                bottomStart = 15.dp
+                                            )
+                                        ),
+                                    colors = TextFieldDefaults.colors(
+                                        focusedContainerColor = Color.White,
+                                        unfocusedContainerColor = Color.White,
+                                        focusedIndicatorColor = Color.Transparent,
+                                        unfocusedIndicatorColor = Color.Transparent,
+                                        focusedTextColor = Color.Black,
+                                        unfocusedTextColor = Color.Black
+                                    ),
+                                    keyboardOptions = KeyboardOptions(
+                                        keyboardType = KeyboardType.Number,
+                                        imeAction = ImeAction.Done
+                                    ),
+                                    keyboardActions = KeyboardActions(onDone = {
+                                        submittedValueTambahKolam = intValueTambahKolamKedalaman
+                                        focusManager.clearFocus()
+                                    })
+                                )
+                                Box(
+                                    modifier = Modifier
+                                        .shadow(
+                                            5.dp, shape = RoundedCornerShape(
+                                                topEnd = 15.dp,
+                                                bottomEnd = 15.dp
+                                            )
+                                        )
+                                        .background(Color.LightGray)
+                                        .padding(vertical = 12.dp, horizontal = 8.dp)
+                                        .width(75.dp)
+                                        .fillMaxHeight(),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        text = "KG",
+                                        color = Color.Black,
+                                        fontSize = 18.sp,
+                                        fontFamily = customFontFamily,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                            }
                         }
                     }
 
                     Spacer(modifier = Modifier.height(20.dp))
 
                     TextField(
-                        value = phAir,
-                        onValueChange = { phAir = it },
+                        value = phAirPagi,
+                        onValueChange = { phAirPagi = it },
                         label = {
                             Text(
                                 text = "PH air ",
                                 fontFamily = customFontFamily
                             )
                         },
-                        placeholder = { Text("Masukkan PH air") },
+                        placeholder = { Text("Edit PH air ") },
                         modifier = Modifier
                             .fillMaxWidth()
                             .shadow(
@@ -338,20 +404,29 @@ fun TambahKolamBody(navController: NavController) {
                             unfocusedIndicatorColor = Color.Transparent,
                             focusedTextColor = Color.Black,
                             unfocusedTextColor = Color.Black
-                        )
+                        ),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Text,
+                            imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(onDone = {
+                            submittedValueTambahKolam = phAirPagi
+                            focusManager.clearFocus()
+                        })
                     )
 
                     Button(
-                        onClick = { navController.navigate(Routes.KolamIkanScreen)},
+                        onClick = { navController.navigate(Routes.KolamIkanScreen) },
                         modifier = Modifier
                             .align(Alignment.End)
                             .padding(top = 20.dp),
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E7BF9))
                     ) {
                         Text(
-                            text = "Tambah",
+                            text = "Simpan",
                             fontFamily = customFontFamily,
                             fontSize = 16.sp,
+                            fontWeight = FontWeight.SemiBold,
                             color = Color.White,
                             modifier = Modifier
                                 .padding(3.dp)

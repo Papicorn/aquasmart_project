@@ -38,6 +38,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -135,6 +136,7 @@ fun HitungDosisPakan(navController: NavController) {
                                     unfocusedContainerColor = Color.White,
                                     focusedContainerColor = Color.White,
                                 ),
+                                textStyle = TextStyle(fontSize = 16.sp, fontFamily = customFontFamily),
                                 shape = RoundedCornerShape(12.dp),
                                 trailingIcon = {
                                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedHitungDosis)
@@ -149,7 +151,7 @@ fun HitungDosisPakan(navController: NavController) {
                                         text = {
                                             Text(
                                                 text = text,
-                                                fontSize = 14.sp,
+                                                fontSize = 16.sp,
                                                 fontFamily = customFontFamily
                                             )
                                         },
@@ -189,6 +191,7 @@ fun HitungDosisPakan(navController: NavController) {
                                     unfocusedContainerColor = Color.White,
                                     focusedContainerColor = Color.White,
                                 ),
+                                textStyle = TextStyle(fontSize = 16.sp, fontFamily = customFontFamily),
                                 shape = RoundedCornerShape(12.dp),
                                 trailingIcon = {
                                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedJenisHitungDosis)
@@ -203,7 +206,7 @@ fun HitungDosisPakan(navController: NavController) {
                                         text = {
                                             Text(
                                                 text = text,
-                                                fontSize = 14.sp,
+                                                fontSize = 16.sp,
                                                 fontFamily = customFontFamily
                                             )
                                         },
@@ -243,6 +246,7 @@ fun HitungDosisPakan(navController: NavController) {
                                     unfocusedContainerColor = Color.White,
                                     focusedContainerColor = Color.White,
                                 ),
+                                textStyle = TextStyle(fontSize = 16.sp, fontFamily = customFontFamily),
                                 shape = RoundedCornerShape(12.dp),
                                 trailingIcon = {
                                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedBiomasa)
@@ -257,7 +261,7 @@ fun HitungDosisPakan(navController: NavController) {
                                         text = {
                                             Text(
                                                 text = text,
-                                                fontSize = 14.sp,
+                                                fontSize = 16.sp,
                                                 fontFamily = customFontFamily
                                             )
                                         },
@@ -283,7 +287,7 @@ fun HitungDosisPakan(navController: NavController) {
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E7BF9))
                         ) {
-                            Text("Hitung", fontSize = 16.sp)
+                            Text("Hitung", fontSize = 16.sp, fontFamily = customFontFamily, fontWeight = FontWeight.SemiBold)
                         }
                     }
                     Column(
@@ -296,7 +300,8 @@ fun HitungDosisPakan(navController: NavController) {
                             "Jumlah pakan adalah",
                             fontFamily = customFontFamily,
                             fontWeight = FontWeight.Normal,
-                            fontSize = 25.sp
+                            fontSize = 25.sp,
+                            modifier = Modifier.padding(bottom = 10.dp)
                         )
                         Text(
                             "2 Kg",

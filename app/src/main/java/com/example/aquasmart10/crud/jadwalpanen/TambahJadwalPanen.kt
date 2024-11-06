@@ -40,6 +40,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -123,6 +124,7 @@ fun TambahJadwalPanen(navController: NavController) {
                                     unfocusedContainerColor = Color.White,
                                     focusedContainerColor = Color.White,
                                 ),
+                                textStyle = TextStyle(fontSize = 16.sp, fontFamily = customFontFamily),
                                 shape = RoundedCornerShape(12.dp),
                                 trailingIcon = {
                                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedTambahJadwalPanen)
@@ -139,7 +141,7 @@ fun TambahJadwalPanen(navController: NavController) {
                                         text = {
                                             Text(
                                                 text = text,
-                                                fontSize = 14.sp,
+                                                fontSize = 16.sp,
                                                 fontFamily = customFontFamily
                                             )
                                         },
@@ -175,7 +177,7 @@ fun TambahJadwalPanen(navController: NavController) {
                             Text(
                                 text = if (selectedDateTambahJadwalPanen.isEmpty()) "Tanggal Tebar" else selectedDateTambahJadwalPanen,
                                 fontFamily = customFontFamily,
-                                fontSize = 14.sp,
+                                fontSize = 16.sp,
                                 color = Color.Black,
                                 modifier = Modifier.weight(1f)
                             )
@@ -220,7 +222,7 @@ fun TambahJadwalPanen(navController: NavController) {
                         },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E7BF9))
                         ) {
-                            Text("Tambah")
+                            Text("Tambah", fontFamily = customFontFamily, fontWeight = FontWeight.SemiBold)
                         }
                     }
                 }

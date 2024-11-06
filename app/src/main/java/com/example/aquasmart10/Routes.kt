@@ -29,4 +29,5 @@ object Routes {
     var PengingatPakanActivity = "Pengingat_Pakan"
     var EditJadwalPakanActivity = "Edit_JadwalPakan"
     var TambahJadwalPakanActivity = "Tambah_JadwalPakan"
+    var LoginScreen = "Login_Page"
 }

@@ -40,6 +40,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -120,6 +121,7 @@ fun EditJadwalPanen(navController: NavController) {
                                     unfocusedContainerColor = Color.White,
                                     focusedContainerColor = Color.White,
                                 ),
+                                textStyle = TextStyle(fontSize = 16.sp, fontFamily = customFontFamily),
                                 shape = RoundedCornerShape(12.dp),
                                 trailingIcon = {
                                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedEditJadwalPanen)
@@ -134,7 +136,7 @@ fun EditJadwalPanen(navController: NavController) {
                                         text = {
                                             Text(
                                                 text = text,
-                                                fontSize = 14.sp,
+                                                fontSize = 16.sp,
                                                 fontFamily = customFontFamily
                                             )
                                         },
@@ -171,7 +173,7 @@ fun EditJadwalPanen(navController: NavController) {
                             Text(
                                 text = if (selectedDateEditJadwalPanen.isEmpty()) "Tanggal Tebar" else selectedDateEditJadwalPanen,
                                 fontFamily = customFontFamily,
-                                fontSize = 14.sp,
+                                fontSize = 16.sp,
                                 color = Color.Black,
                                 modifier = Modifier.weight(1f)
                             )
@@ -214,7 +216,7 @@ fun EditJadwalPanen(navController: NavController) {
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E7BF9))
                         ) {
-                            Text("Simpan")
+                            Text("Simpan", fontFamily = customFontFamily, fontWeight = FontWeight.SemiBold)
                         }
                     }
                 }

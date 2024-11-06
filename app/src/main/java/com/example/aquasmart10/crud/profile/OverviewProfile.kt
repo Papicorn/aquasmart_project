@@ -239,7 +239,7 @@ fun OverviewProfile(navController: NavController) {
                                     )
                                 )
                             ) {
-                                Text("Edit Profile")
+                                Text("Edit Profile", fontWeight = FontWeight.SemiBold, fontFamily = customFontFamily)
                             }
                         }
                     }

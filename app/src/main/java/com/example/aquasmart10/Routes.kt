@@ -30,4 +30,5 @@ object Routes {
     var EditJadwalPakanActivity = "Edit_JadwalPakan"
     var TambahJadwalPakanActivity = "Tambah_JadwalPakan"
     var LoginScreen = "Login_Page"
+    var CoverScreen = "Cover_Screen"
 }

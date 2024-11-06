@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.aquasmart10.view.BerandaActivity
+import com.example.aquasmart10.view.CoverScreen
 import com.example.aquasmart10.view.EditIkanActivity
 import com.example.aquasmart10.view.EditJadwalPakanActivity
 import com.example.aquasmart10.view.EditJadwalPanenActivity
@@ -40,17 +41,18 @@ import com.example.aquasmart10.view.TambahKematianIkanActivity
 import com.example.aquasmart10.view.TambahKolamScreen
 import com.example.aquasmart10.view.TambahPakanScreen
 
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         actionBar?.hide()
         installSplashScreen()
         setContent {
             val navController = rememberNavController()
             NavHost(
                 navController = navController,
-                startDestination = Routes.LoginScreen,
+                startDestination = Routes.CoverScreen,
                 enterTransition = { EnterTransition.None },
                 exitTransition = { ExitTransition.None }
             ) {
@@ -256,6 +258,13 @@ class MainActivity : ComponentActivity() {
                     exitTransition = { ExitTransition.None }
                 ) {
                     LoginScreen(navController)
+                }
+                composable(
+                    route = Routes.CoverScreen,
+                    enterTransition = { EnterTransition.None },
+                    exitTransition = { ExitTransition.None }
+                ) {
+                    CoverScreen(navController)
                 }
             }
         }

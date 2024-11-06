@@ -22,6 +22,7 @@ function EditPage() {
             id: user.id,
             name,
             address,
+            email,
             role,
             password,
         };

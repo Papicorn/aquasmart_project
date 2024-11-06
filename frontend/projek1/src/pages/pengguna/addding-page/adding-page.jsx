@@ -15,6 +15,9 @@ function AddingPage() {
   const getYear = new Date().getFullYear();
   const getMonth = new Date().getMonth();
   const getDay = new Date().getDate();
+  const getHours = new Date().getHours();
+  const getMinute = new Date().getMinutes();
+  const getSecond = new Date().getSeconds();
 
   const indonesianMonths = {
     1: "Januari",
@@ -40,7 +43,7 @@ function AddingPage() {
       email,
       role,
       password,
-      registration: `${getDay} ${indonesianMonths[getMonth]} ${getYear}`,
+      registration: `${getHours}:${getMinute}:${getSecond} || ${getDay} ${indonesianMonths[getMonth]} ${getYear}`,
     };
     addUser(formData);
     navigate("/pengguna");

@@ -35,7 +35,7 @@ const App = () => {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/profile/edit" element={<ProfileEditPage />} />
         {/* You can add a fallback route here if needed */}
-        <Route path="*" element={<Navigate to="/home" />} /> {/* Redirects to LoginForm for any unknown routes */}
+        <Route path="*" element={<Navigate to="/home" />} /> { }
       </Routes>
       <Footer />
     </>

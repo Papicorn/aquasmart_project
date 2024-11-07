@@ -32,5 +32,3 @@ AquaSmart adalah platform web dan aplikasi inovatif yang dirancang untuk memudah
 ## Copyright and License
 
 Copyright (c) 2024 AquaNusa
-
-All rights reserved. This project and its contents are protected by copyright law. No part of this project may be reproduced, distributed, or transmitted in any form or by any means without the prior written permission of the copyright holder.

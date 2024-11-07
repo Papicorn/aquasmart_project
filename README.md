@@ -10,19 +10,19 @@ AquaSmart adalah platform web dan aplikasi inovatif yang dirancang untuk memudah
 
 **Mobile:**
 - M Afif Alfawwaz ([@Papicorn](https://github.com/Papicorn))
-- Ahmad Ghulam Zaki ([@]())
-- Arfa Aniq Sabila ([@]())
+- Ahmad Ghulam Zaki ([@AhmadZaki8332](https://github.com/AhmadZaki8332))
+- Arfa Aniq Sabila ([@Arfaaniq](https://github.com/Arfaaniq))
 - Mufasirina Haqulianti ([@]())
-- Mira Handayani ([@]())
-- Oktarira Die Ananda ([@]())
+- Mira Handayani ([@Raa-14](https://github.com/Raa-14))
+- Oktarira Die Ananda ([@Oktarira](https://github.com/Oktarira)))
 
 **Website:**
 - Yuliana ([@Yllyanaaa](https://github.com/Yllyanaaa))
-- Rahmat Taufik Hidayat ([@]())
-- Hilmi Azhar ([@]())
-- Selvia Ayu Syaputri ([@]())
-- Hudiya Aksan Hawary ([@]())
-- Alysha Nisa Syanabila ([@]())
+- Rahmat Taufik Hidayat ([@Taufik1708](https://github.com/Taufik1708))
+- Hilmi Azhar ([@Hilmidipo](https://github.com/Hilmidipo))
+- Selvia Ayu Syaputri ([@](https://github.com/Taufik1708))
+- Hudiya Aksan Hawary ([@](https://github.com/Taufik1708))
+- Alysha Nisa Syanabila ([@](https://github.com/Taufik1708))
 
 
 ## Mitra

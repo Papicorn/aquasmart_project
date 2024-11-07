@@ -17,7 +17,7 @@ AquaSmart adalah platform web dan aplikasi inovatif yang dirancang untuk memudah
 - Oktarira Die Ananda ([@]())
 
 **Website:**
-- Yuliana ([@]())
+- Yuliana ([@Yllyanaaa](https://github.com/Yllyanaaa))
 - Rahmat Taufik Hidayat ([@]())
 - Hilmi Azhar ([@]())
 - Selvia Ayu Syaputri ([@]())

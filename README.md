@@ -14,7 +14,7 @@ AquaSmart adalah platform web dan aplikasi inovatif yang dirancang untuk memudah
 - Arfa Aniq Sabila ([@]())
 - Mufasirina Haqulianti ([@]())
 - Mira Handayani ([@]())
-- Oktarira ([@]())
+- Oktarira Die Ananda ([@]())
 
 **Website:**
 - Yuliana ([@]())

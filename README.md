@@ -1,5 +1,5 @@
 
-![Logo](https://i.ibb.co.com/87JVpJT/Logo-revisi-aqua-smart.png)
+![Logo]([https://i.ibb.co.com/87JVpJT/Logo-revisi-aqua-smart.png](https://i.ibb.co.com/TW02YXC/Logo-revisi-1.png))
 
 
 # AquaSmart Project (App & Web)

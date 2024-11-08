@@ -29,13 +29,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.aquasmart10.R
 import com.example.aquasmart10.Routes
 
@@ -123,95 +128,239 @@ fun ProfileAwal(navController: NavController) {
             }
             Spacer(modifier = Modifier.height(16.dp))
 
-            Card(
-                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = Color(0xFFFFFFFF),
-                ),
-                onClick = { openAlertDialog.value = true },
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(55.dp)
+                    .fillMaxSize()
+                    .padding(bottom = 50.dp),
+                verticalArrangement = Arrangement.Bottom,
+
             ) {
-                Row(
+                Spacer(modifier = Modifier.height(0.dp))
+                //card info
+                Text(
+                    text = "Info Lainnya",
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Normal,
+                    fontFamily = customFontFamily,
+                    color = Color.Black,
                     modifier = Modifier
-                        .fillMaxSize(),
-                    verticalAlignment = Alignment.CenterVertically
+                        .padding(bottom = 0.dp))
+
+                Card(
+                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color(0xFFFFFFFF),
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 30.dp)
+                        .height(55.dp)
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.Logout,
-                        contentDescription = "Back",
-                        tint = Color.Red,
+                    Row(
                         modifier = Modifier
-                            .size(40.dp)
-                            .padding(start = 16.dp)
-                    )
-                    Text(
-                        "Keluar",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Normal,
-                        fontFamily = customFontFamily,
-                        color = Color.Red,
-                        modifier = Modifier
-                            .padding(16.dp)
-                    )
+                            .fillMaxSize(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.img_8),
+                            contentDescription = "Back",
+                            tint = Color.Black,
+                            modifier = Modifier
+                                .size(40.dp)
+                                .padding(start = 16.dp)
+                        )
+                        Text(
+                            "Versi 1.0.0",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Normal,
+                            fontFamily = customFontFamily,
+                            modifier = Modifier
+                                .padding(16.dp)
+                        )
+
+                    }
                 }
-                if (openAlertDialog.value) {
-                    AlertDialog(
-                        containerColor = Color.White,
-                        onDismissRequest = {
-                            openAlertDialog.value = false
-                        },
-                        title = {
-                            Column(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Default.Logout,
-                                    contentDescription = "logout",
-                                    tint = Color.Black,
-                                    modifier = Modifier
-                                        .size(70.dp)
+                Spacer(modifier = Modifier.height(0.dp))
+                /// card beri nilai
+                Card(
+                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color(0xFFFFFFFF),
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 20.dp)
+                        .height(55.dp)
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.img_7),
+                            contentDescription = "Back",
+                            tint = Color.Black,
+                            modifier = Modifier
+                                .size(40.dp)
+                                .padding(start = 16.dp)
+                        )
+                        Text(
+                            "Beri Nilai",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Normal,
+                            fontFamily = customFontFamily,
+                            modifier = Modifier
+                                .padding(16.dp)
+                        )
+                        Spacer(modifier = Modifier.weight(1f))
+                        Icon(
+                            painter = painterResource(id = R.drawable.img_10),
+                            contentDescription = "Back",
+                            tint = Color.Black,
+                            modifier = Modifier
+                                .size(24.dp)
+                                .padding(end = 16.dp)
+
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                //card keluar
+                Card(
+                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color(0xFFFFFFFF),
+                    ),
+                    onClick = { openAlertDialog.value = true },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(55.dp)
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Logout,
+                            contentDescription = "Back",
+                            tint = Color.Red,
+                            modifier = Modifier
+                                .size(40.dp)
+                                .padding(start = 16.dp)
+                        )
+                        Text(
+                            "Keluar",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Normal,
+                            fontFamily = customFontFamily,
+                            color = Color.Red,
+                            modifier = Modifier
+                                .padding(16.dp)
+                        )
+                    }
+                    if (openAlertDialog.value) {
+                        AlertDialog(
+                            containerColor = Color.White,
+                            onDismissRequest = {
+                                openAlertDialog.value = false
+                            },
+                            title = {
+                                Column(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalAlignment = Alignment.CenterHorizontally
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Logout,
+                                        contentDescription = "logout",
+                                        tint = Color.Black,
+                                        modifier = Modifier
+                                            .size(70.dp)
+                                    )
+                                }
+                            },
+                            text = {
+                                Text(
+                                    text = "Apakah kamu yakin akan keluar?",
+                                    modifier = Modifier.fillMaxWidth(),
+                                    textAlign = TextAlign.Center,
+                                    fontFamily = customFontFamily
                                 )
-                            }
-                        },
-                        text = {
-                            Text(
-                                text = "Apakah kamu yakin akan keluar?",
-                                modifier = Modifier.fillMaxWidth(),
-                                textAlign = TextAlign.Center,
-                                fontFamily = customFontFamily
-                            )
-                        },
-                        confirmButton = {
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceEvenly
-                            ) {
-                                TextButton(
-                                    onClick = {
-                                        openAlertDialog.value = false
-                                    },
-                                    modifier = Modifier
-                                        .background(Color.Red, shape = RoundedCornerShape(8.dp))
+                            },
+                            confirmButton = {
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceEvenly
                                 ) {
-                                    Text("Keluar", color = Color.White,  fontFamily = customFontFamily)
-                                }
-                                TextButton(
-                                    onClick = {
-                                        openAlertDialog.value = false
-                                    },
-                                    modifier = Modifier
-                                        .background(Color.Black, shape = RoundedCornerShape(8.dp))
-                                ) {
-                                    Text("Batal", color = Color.White, fontFamily = customFontFamily)
+                                    TextButton(
+                                        onClick = {
+                                            openAlertDialog.value = false
+                                        },
+                                        modifier = Modifier
+                                            .background(Color.Red, shape = RoundedCornerShape(8.dp))
+                                    ) {
+                                        Text(
+                                            "Keluar",
+                                            color = Color.White,
+                                            fontFamily = customFontFamily
+                                        )
+                                    }
+                                    TextButton(
+                                        onClick = {
+                                            openAlertDialog.value = false
+                                        },
+                                        modifier = Modifier
+                                            .background(
+                                                Color.Black,
+                                                shape = RoundedCornerShape(8.dp)
+                                            )
+                                    ) {
+                                        Text(
+                                            "Batal",
+                                            color = Color.White,
+                                            fontFamily = customFontFamily
+                                        )
+                                    }
                                 }
                             }
-                        }
-                    )
+                        )
+                    }
                 }
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = buildAnnotatedString {
+                        append("Tentang ")
+                        withStyle(style = SpanStyle(fontWeight = FontWeight.ExtraBold)) {
+                            append("AquaSmart")
+                        }
+                    },
+                    fontFamily = customFontFamily,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 15.sp,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "AquaSmart adalah aplikasi yang dirancang untuk membantu pengguna dalam mengatur dan memantau konsumsi air secara efisien. Dengan fitur-fitur yang mudah digunakan, AquaSmart membantu memastikan kebutuhan hidrasi harian terpenuhi sambil menghemat sumber daya",
+                    fontSize = 14 .sp
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                Text(
+                    text = "Copyright (c) 2024 AquaNusa",
+                    fontSize = 12.sp,
+                    color = Color.Gray
+                )
+
+
+
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun ProfileAwalPreview () {
+    ProfileAwal(navController = rememberNavController())
 }

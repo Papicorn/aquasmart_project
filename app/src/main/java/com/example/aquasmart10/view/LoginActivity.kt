@@ -55,6 +55,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.navigation.NavController
 import com.example.aquasmart10.Routes
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 
 
 
@@ -113,7 +115,7 @@ fun LoginScreen(navController: NavController) {
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             // Top Spacing
-            item { Spacer(modifier = Modifier.height(250.dp)) }
+            item { Spacer(modifier = Modifier.height(280.dp)) }
 
             // Title
             item {
@@ -269,3 +271,8 @@ fun LoginScreen(navController: NavController) {
         }
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewLoginScreen() {
+    LoginScreen(navController = rememberNavController())}

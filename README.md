@@ -22,7 +22,7 @@ AquaSmart adalah platform web dan aplikasi inovatif yang dirancang untuk memudah
 - Hilmi Azhar ([@Hilmidipo](https://github.com/Hilmidipo))
 - Selvia Ayu Syaputri ([@selvia280904](https://github.com/selvia280904))
 - Hudiya Aksan Hawary ([@Hudiyaaksan29](https://github.com/Hudiyaaksan29))
-- Alysha Nisa Syanabila ([@](https://github.com/))
+- Alysha Nisa Syanabila ([@alysha001](https://github.com/alysha001))
 
 
 ## Mitra

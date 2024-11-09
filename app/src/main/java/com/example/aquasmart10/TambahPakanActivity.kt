@@ -25,11 +25,28 @@ import com.example.aquasmart10.ui.theme.AquaSmart10Theme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
+class TambahPakanActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            AquaSmart10Theme() {
+                Surface (
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    color = Color(0xFFEFF6FC)
+                ) {
+                    LoginScreen()
+                }
+            }
+        }
+    }
+}
+
 @Composable
 fun TambahPakanScreen(navController: NavController) {
     Scaffold(
         bottomBar = {
-            BottomNavigationBar()
+            BottomNavigationBar(navController)
         }
     ) { padding ->
 
@@ -44,3 +61,4 @@ fun TambahPakanScreen(navController: NavController) {
         }
     }
 }
+

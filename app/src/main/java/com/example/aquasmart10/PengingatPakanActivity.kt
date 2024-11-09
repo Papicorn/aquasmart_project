@@ -22,40 +22,14 @@ import com.example.aquasmart10.component.SecondaryHeader
 import com.example.aquasmart10.ui.theme.AquaSmart10Theme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
-class PengingatPakanActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            AquaSmart10Theme {
-                // A surface container using the 'background' color from the theme
 
-                SetBarColor(color = MaterialTheme.colorScheme.background)
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background,
-                ) {
-                    PengingatPakanScreen()
-                }
-            }
-        }
-    }
-    @Composable
-    private fun SetBarColor(color: Color) {
-        val systemUiController = rememberSystemUiController()
-        SideEffect {
-            systemUiController.setSystemBarsColor(
-                color = color
-            )
-        }
-    }
-}
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun PengingatPakanScreen() {
+fun PengingatPakanScreen(n) {
     Scaffold(
         bottomBar = {
-            BottomNavigationBar()
+            BottomNavigationBar(navController)
         }
     ) { padding ->
 

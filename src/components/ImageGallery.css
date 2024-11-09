@@ -1,0 +1,12 @@
+/* src/components/ImageGallery.css */
+.image-gallery {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+  }
+  
+  .gallery-image {
+    width: 45%;
+    border-radius: 8px;
+  }
+  

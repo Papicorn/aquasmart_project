@@ -1,0 +1,112 @@
+.dokumentasi-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e0e8ff;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .logo-navbar {
+    height: 50px;
+  }
+  
+  .hero-section {
+    width: 100%;
+  }
+  
+  .background-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .dokumentasi-title {
+    margin-top: 20px;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .dokumentasi-table-container {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dokumentasi-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .dokumentasi-table th, .dokumentasi-table td {
+    padding: 12px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .dokumentasi-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+  
+  .dokumentasi-table td img.foto-dokumentasi {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+  }
+  
+  .no-image-text {
+    color: #777;
+    font-style: italic;
+  }
+  
+  .no-data {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+  }
+  
+  .add-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .add-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9em;
+    color: #333;
+  }
+  

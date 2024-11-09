@@ -1,0 +1,20 @@
+/* src/App.css */
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+.app {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.stats-section {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.activity-section {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}

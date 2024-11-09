@@ -1,0 +1,79 @@
+/* src/TambahDokumentasi.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f8fe;
+  color: #333;
+  margin: 0;
+}
+
+.dokumentasi-container {
+  max-width: 800px; /* Maksimal lebar kontainer */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dokumentasi-title {
+  text-align: center;
+  color: #4A6CF7;
+  margin-bottom: 20px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4A6CF7;
+  padding: 15px 30px;
+  color: white;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+.form-tambah {
+  background-color: #e0e7ff; /* Light blue for form background */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.input-field:focus {
+  border-color: #4A6CF7;
+  outline: none;
+}
+
+.submit-btn {
+  background-color: #4A6CF7;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
+
+footer {
+  text-align: center;
+  color: white;
+  background-color: #4A6CF7;
+  padding: 10px;
+  font-size: 14px;
+  margin-top: 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}

@@ -1,0 +1,44 @@
+.notification {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 1000;
+  }
+  
+  .notification h3 {
+    margin: 0 0 5px;
+    color: #4A6CF7;
+  }
+  
+  .notification p {
+    margin: 5px 0;
+  }
+  
+  .notification button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4A6CF7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .notification .close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  

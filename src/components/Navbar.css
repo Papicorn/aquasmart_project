@@ -1,0 +1,37 @@
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #8eafff; /* Warna latar biru */
+  padding: 10px 20px;
+}
+
+.navbar-logo img {
+  height: 40px; /* Sesuaikan dengan tinggi logo */
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-link {
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.navbar-link.active {
+  font-weight: bold; /* Bold untuk "Beranda" sebagai halaman aktif */
+}
+
+.navbar-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-icon {
+  font-size: 20px;
+  color: #fff;
+}

@@ -1,0 +1,40 @@
+/* src/components/TambahPengguna.css */
+.tambah-pengguna-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .tambah-pengguna-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .tambah-pengguna-form label {
+    font-size: 1.1em;
+    color: #333;
+  }
+  
+  .tambah-pengguna-form input,
+  .tambah-pengguna-form select {
+    padding: 10px;
+    border: 2px solid #87CEEB;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  
+  .btn-simpan {
+    padding: 10px;
+    background-color: #6495ED;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+  }
+  
+  .btn-simpan:hover {
+    background-color: #4682B4;
+  }
+  

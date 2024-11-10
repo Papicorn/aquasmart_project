@@ -142,6 +142,8 @@ fun EditStokIkan(navController: NavController) {
                                 colors = TextFieldDefaults.colors(
                                     unfocusedContainerColor = Color.White,
                                     focusedContainerColor = Color.White,
+                                    unfocusedIndicatorColor = Color.Transparent,
+                                    focusedIndicatorColor = Color.Transparent
                                 ),
                                 textStyle = TextStyle(fontSize = 16.sp, fontFamily = customFontFamily),
                                 shape = RoundedCornerShape(12.dp),

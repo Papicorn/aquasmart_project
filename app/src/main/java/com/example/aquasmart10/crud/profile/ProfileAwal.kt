@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +22,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -61,8 +63,17 @@ fun ProfileAwal(navController: NavController) {
                 )
             )
             .background(color = Color(0xFFEFF6FC))
-            .fillMaxSize()
-    ) {
+            .fillMaxSize(), content = function(customFontFamily, navController, openAlertDialog)
+    )
+}
+
+@Composable
+private fun function(
+    customFontFamily: FontFamily,
+    navController: NavController,
+    openAlertDialog: MutableState<Boolean>
+): @Composable() (ColumnScope.() -> Unit) =
+    {
         Row(
             modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
         ) {
@@ -87,9 +98,19 @@ fun ProfileAwal(navController: NavController) {
                 )
             }
         }
+        Spacer(modifier = Modifier.height(16.dp))
         Column(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp)
         ) {
+            Text(
+                text = "Akun",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Normal,
+                fontFamily = customFontFamily,
+                color = Color.Black,
+                modifier = Modifier
+                    .padding(bottom = 0.dp, start = 10.dp)
+            )
             Card(
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 colors = CardDefaults.cardColors(
@@ -100,7 +121,7 @@ fun ProfileAwal(navController: NavController) {
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 30.dp)
+                    .padding(top = 10.dp)
                     .height(55.dp)
             ) {
                 Row(
@@ -134,17 +155,18 @@ fun ProfileAwal(navController: NavController) {
                     .padding(bottom = 50.dp),
                 verticalArrangement = Arrangement.Bottom,
 
-            ) {
+                ) {
                 Spacer(modifier = Modifier.height(0.dp))
                 //card info
                 Text(
                     text = "Info Lainnya",
-                    fontSize = 13.sp,
+                    fontSize = 14.sp,
                     fontWeight = FontWeight.Normal,
                     fontFamily = customFontFamily,
                     color = Color.Black,
                     modifier = Modifier
-                        .padding(bottom = 0.dp))
+                        .padding(bottom = 0.dp, start = 10.dp)
+                )
 
                 Card(
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
@@ -153,7 +175,7 @@ fun ProfileAwal(navController: NavController) {
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 30.dp)
+                        .padding(top = 10.dp)
                         .height(55.dp)
                 ) {
                     Row(
@@ -164,7 +186,7 @@ fun ProfileAwal(navController: NavController) {
                         Icon(
                             painter = painterResource(id = R.drawable.img_8),
                             contentDescription = "Back",
-                            tint = Color.Black,
+                            tint = Color.Black.copy(alpha = 0.5f),
                             modifier = Modifier
                                 .size(40.dp)
                                 .padding(start = 16.dp)
@@ -174,6 +196,7 @@ fun ProfileAwal(navController: NavController) {
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Normal,
                             fontFamily = customFontFamily,
+                            color = Color.Black.copy(alpha = 0.5f),
                             modifier = Modifier
                                 .padding(16.dp)
                         )
@@ -200,7 +223,7 @@ fun ProfileAwal(navController: NavController) {
                         Icon(
                             painter = painterResource(id = R.drawable.img_7),
                             contentDescription = "Back",
-                            tint = Color.Black,
+                            tint = Color.Black.copy(alpha = 0.5f),
                             modifier = Modifier
                                 .size(40.dp)
                                 .padding(start = 16.dp)
@@ -210,6 +233,7 @@ fun ProfileAwal(navController: NavController) {
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Normal,
                             fontFamily = customFontFamily,
+                            color = Color.Black.copy(alpha = 0.5f),
                             modifier = Modifier
                                 .padding(16.dp)
                         )
@@ -217,7 +241,7 @@ fun ProfileAwal(navController: NavController) {
                         Icon(
                             painter = painterResource(id = R.drawable.img_10),
                             contentDescription = "Back",
-                            tint = Color.Black,
+                            tint = Color.Black.copy(alpha = 0.5f),
                             modifier = Modifier
                                 .size(24.dp)
                                 .padding(end = 16.dp)
@@ -327,7 +351,7 @@ fun ProfileAwal(navController: NavController) {
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(38.dp))
                 Text(
                     text = buildAnnotatedString {
                         append("Tentang ")
@@ -342,22 +366,21 @@ fun ProfileAwal(navController: NavController) {
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "AquaSmart adalah aplikasi yang dirancang untuk membantu pengguna dalam mengatur dan memantau konsumsi air secara efisien. Dengan fitur-fitur yang mudah digunakan, AquaSmart membantu memastikan kebutuhan hidrasi harian terpenuhi sambil menghemat sumber daya",
-                    fontSize = 14 .sp
+                    text = "Pengelolaan perikanan secara digital yang menyederhanakan proses pengelolaan stok ikan, perkembangan ikan serta pemberian pakan secara lebih efisien dan terstruktur.",
+                    fontSize = 12.sp,
+                    color = Color.Black.copy(alpha = 0.3f)
                 )
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(15.dp))
                 Text(
                     text = "Copyright (c) 2024 AquaNusa",
                     fontSize = 12.sp,
-                    color = Color.Gray
+                    color = Color.Gray,
                 )
-
 
 
             }
         }
     }
-}
 
 @Preview
 @Composable

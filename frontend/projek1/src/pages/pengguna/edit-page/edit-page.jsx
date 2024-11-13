@@ -16,6 +16,27 @@ function EditPage() {
     const [role, setRole] = useState(user.role || "Petani");
     const [password, setPassword] = useState(user.password || "");
 
+    const getYear = new Date().getFullYear();
+    const getMonth = new Date().getMonth();
+    const getDay = new Date().getDate();
+    const getHours = new Date().getHours();
+    const getMinute = new Date().getMinutes();
+    const getSecond = new Date().getSeconds();
+
+    const indonesianMonths = {
+        1: "Januari",
+        2: "Februari",
+        3: "Maret",
+        4: "April",
+        5: "Mei",
+        6: "Juni",
+        7: "Juli",
+        8: "Agustus",
+        9: "September",
+        10: "Oktober",
+        11: "November",
+        12: "Desember",
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
         let formData = {
@@ -25,6 +46,7 @@ function EditPage() {
             email,
             role,
             password,
+            registration: `${getHours}:${getMinute}:${getSecond} || ${getDay} ${indonesianMonths[getMonth]} ${getYear}`,
         };
         editUser(formData);
         navigate("/pengguna");

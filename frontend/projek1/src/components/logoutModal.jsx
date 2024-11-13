@@ -9,7 +9,7 @@ function LogoutModal({ setShow, profile }) {
             <div className="card-modal bg-[#EFF6FC] p-10 rounded-lg flex flex-col gap-y-4">
                 <span className="font-bold">Apakah anda yakin akan keluar?</span>
                 <div className="flex gap-x-8 justify-center">
-                    <button className="text-white bg-[#EC221F] px-9 py-3 rounded-lg" onClick={() => navigate("/")}>
+                    <button className="text-white bg-[#EC221F] px-9 py-3 rounded-lg" onClick={() => navigate("/login")}>
                         Keluar
                     </button>
                     <button className="text-white bg-black px-9 py-3 rounded-lg" onClick={() => setShow(false)}>

@@ -1,0 +1,135 @@
+/* Reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4A6CF7;
+  padding: 15px 30px;
+  color: white;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+.navbar .logo-navbar {
+  width: 80px;
+  height: auto;
+}
+
+.navbar-icons {
+  display: flex;
+  gap: 15px;
+}
+
+/* Background for the entire page */
+.tambah-dokumentasi-background {
+  background-image: url('../assets/hero.png'); 
+  background-size: cover; 
+  background-position: center;
+  height: 100vh; 
+  display: flex;
+  flex-direction: column; 
+}
+
+/* Hero section styles */
+.hero-section {
+  text-align: center; 
+  padding: 40px 0; 
+  color: white; 
+}
+
+/* Main container for the form */
+.tambah-dokumentasi-container {
+  max-width: 500px; 
+  width: 100%; 
+  margin: 20px auto; 
+  padding: 20px; 
+  border-radius: 12px; 
+  background-color: rgba(255, 255, 255, 0.9); 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+}
+
+/* Form styles */
+.tambah-dokumentasi-form {
+  display: flex; 
+  flex-direction: column; 
+}
+
+.form-group {
+  margin-bottom: 15px; 
+}
+
+/* Label styles */
+label {
+  margin-bottom: 5px; 
+  font-weight: bold; 
+  color: #333; 
+}
+
+/* Input and textarea styles */
+input[type="text"],
+input[type="date"],
+textarea {
+  width: 100%; 
+  padding: 12px; 
+  border: 1px solid #007bff; 
+  border-radius: 6px; 
+  background-color: #ffffff; 
+  font-size: 16px; 
+  transition: border-color 0.3s; 
+}
+
+/* Input focus styles */
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+  border-color: #0056b3;
+  outline: none;
+}
+
+/* Textarea styles */
+textarea {
+  resize: vertical;
+  height: 120px;
+}
+
+/* File input styles */
+input[type="file"] {
+  margin-top: 10px;
+}
+
+/* Button styles */
+.btn-tambah {
+  padding: 12px; 
+  background-color: #007bff; 
+  color: white;
+  border: none; 
+  border-radius: 6px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  transition: background-color 0.3s; 
+  margin-top: 20px; 
+}
+
+/* Button hover effect */
+.btn-tambah:hover {
+  background-color: #0056b3;
+}
+
+/* Footer styles */
+.footer {
+  text-align: center; 
+  padding: 10px 0; 
+  background-color: #007bff; 
+  color: white; 
+}

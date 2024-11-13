@@ -1,11 +1,11 @@
-const mysql = require('mysql2/promise'); // Menggunakan mysql2 dengan dukungan promise
+const mysql = require('mysql2/promise');
 
 
 const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'aqua_smart',
+    database: 'aquasmart',
 });
 
 module.exports = db;

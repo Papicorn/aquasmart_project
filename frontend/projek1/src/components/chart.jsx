@@ -187,15 +187,31 @@ const ChartGraph = () => {
   return (
     <div className="chart__container bg-secondary-color p-8 w-max rounded-lg">
       <div className="chart__date-range flex justify-between mb-2 items-center">
-        <div className="chart__date-start bg-white px-4 py-2 rounded-lg font-bold">
-          Tanggal
-          <input type="date" value={startDate} min={minInputDate} max={maxInputDate} onChange={handleStartDateChange} className="bg-transparent text-transparent border-none outline-none" />
+        <div className="chart__date-start bg-white px-4 py-2 rounded-lg font-bold flex items-center">
+          <span className="mr-2">Tanggal</span> {/* Tambahkan span untuk teks "Tanggal" */}
+          <input
+            type="date"
+            value={startDate}
+            min={minInputDate}
+            max={maxInputDate}
+            onChange={handleStartDateChange}
+            className="bg-transparent border-none outline-none"
+            style={{ border: 'none', outline: 'none' }}
+          />
           <i className="fas fa-calendar-alt"></i>
         </div>
         <span className="text-7xl text-white">-</span>
-        <div className="chart__date-end bg-white px-4 py-2 rounded-lg font-bold ">
-          Tanggal
-          <input type="date" value={endDate} min={startDate} max={maxInputDate} onChange={handleEndDateChange} className="bg-transparent text-transparent border-none outline-none" />
+        <div className="chart__date-end bg-white px-4 py-2 rounded-lg font-bold flex items-center">
+          <span className="mr-2">Tanggal</span> {/* Tambahkan span untuk teks "Tanggal" */}
+          <input
+            type="date"
+            value={endDate}
+            min={startDate}
+            max={maxInputDate}
+            onChange={handleEndDateChange}
+            className="bg-transparent border-none outline-none"
+            style={{ border: 'none', outline: 'none' }}
+          />
           <i className="fas fa-calendar-alt"></i>
         </div>
       </div>

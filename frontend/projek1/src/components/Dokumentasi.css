@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Container utama */
+.dokumentasi-container {
+    width: 100vw;
+    /* Memastikan lebar penuh */
+    height: 100vh;
+    /* Memastikan tinggi penuh */
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f8fe;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #4A6CF7;
+    padding: 15px 30px;
+    color: white;
+    width: 100%;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.navbar .logo-navbar {
+    width: 80px;
+}
+
+/* Gambar background */
+.background-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+/* Judul tengah */
+.dokumentasi-title {
+    text-align: center;
+    color: #4A6CF7;
+    margin: 20px 0;
+}
+
+/* Tabel dokumentasi */
+.dokumentasi-table {
+    background-color: #e0e7ff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    /* Membuat tabel mengisi sisa ruang */
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #4A6CF7;
+    color: white;
+}
+
+.foto-dokumentasi {
+    max-width: 100%;
+    /* Agar gambar tidak melebihi lebar wadah */
+    height: auto;
+    /* Biarkan tinggi otomatis agar proporsional */
+}
+
+/* Tombol tambah */
+.add-btn {
+    background-color: #5E7BF9;
+    /* Hijau */
+    color: white;
+    padding: 10px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    margin-top: 10px;
+}
+
+/* Styles for icon buttons */
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 10px;
+    /* Spacing between icons */
+}
+
+.icon-button:hover {
+    color: #007bff;
+    /* Change color on hover */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    color: white;
+    background-color: #4A6CF7;
+    padding: 15px;
+    font-size: 14px;
+    margin-top: 20px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 100%;
+}

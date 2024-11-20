@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const cors = require('cors');
 const path = require('path');
-//commit hilmi
+const notification = require('./notifications/notification');
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -13,7 +14,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 
-
+const subscriptionRoute = require('./routes/subscription');
+app.use('/api/subscription', subscriptionRoute);
 
 const userRoute = require('./routes/users');
 app.use('/api/users', userRoute);

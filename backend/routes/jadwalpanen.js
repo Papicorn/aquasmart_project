@@ -5,15 +5,15 @@ const authMiddleware = require('../middleware/auth');
 
 
 router.post('/', authMiddleware, async (req, res) => {
-    const { id_kolam, nama_kolam, catatan, waktu } = req.body;
+    const { id_kolam, tanggal, catatan } = req.body;
 
-    if (!id_kolam || !nama_kolam || !catatan || !waktu) {
+    if (!id_kolam || !tanggal || !catatan) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
     try {
-        const [result] = await db.query('INSERT INTO jadwal_panen (id_kolam, nama_kolam, catatan, waktu) VALUES (?, ?, ?, ?)',
-            [id_kolam, nama_kolam, catatan, waktu]);
+        const [result] = await db.query('INSERT INTO jadwal_panen (id_kolam, tanggal, catatan, status_aktif) VALUES (?, ?, ?, "aktif")',
+            [id_kolam, tanggal, catatan]);
 
         res.status(201).json({ message: 'Jadwal panen created successfully', id_jadwalpanen: result.insertId });
     } catch (error) {
@@ -24,16 +24,15 @@ router.post('/', authMiddleware, async (req, res) => {
 
 router.post('/:id_kolam', authMiddleware, async (req, res) => {
     const { id_kolam } = req.params;
-    const { nama_kolam, catatan, waktu } = req.body;
+    const { tanggal, catatan } = req.body;
 
-
-    if (!nama_kolam || !catatan || !waktu) {
-        return res.status(400).json({ error: 'All fields except id_kolam are required' });
+    if (!tanggal || !catatan) {
+        return res.status(400).json({ error: 'Tanggal and catatan are required' });
     }
 
     try {
-        const [result] = await db.query('INSERT INTO jadwal_panen (id_kolam, nama_kolam, catatan, waktu) VALUES (?, ?, ?, ?)',
-            [id_kolam, nama_kolam, catatan, waktu]);
+        const [result] = await db.query('INSERT INTO jadwal_panen (id_kolam, tanggal, catatan, status_aktif) VALUES (?, ?, ?, "aktif")',
+            [id_kolam, tanggal, catatan]);
 
         res.status(201).json({ message: 'Jadwal panen created successfully', id_jadwalpanen: result.insertId });
     } catch (error) {
@@ -45,7 +44,7 @@ router.post('/:id_kolam', authMiddleware, async (req, res) => {
 
 router.get('/', authMiddleware, async (req, res) => {
     try {
-        const [rows] = await db.query('SELECT * FROM jadwal_panen');
+        const [rows] = await db.query('SELECT * FROM jadwal_panen WHERE status_aktif = "aktif"');
         res.json(rows);
     } catch (error) {
         console.error('Error fetching jadwal panen:', error);
@@ -56,11 +55,11 @@ router.get('/', authMiddleware, async (req, res) => {
 
 router.put('/:id_jadwalpanen', authMiddleware, async (req, res) => {
     const { id_jadwalpanen } = req.params;
-    const { id_kolam, nama_kolam, catatan, waktu } = req.body;
+    const { id_kolam, tanggal, catatan } = req.body;
 
     try {
-        const [result] = await db.query('UPDATE jadwal_panen SET id_kolam = ?, nama_kolam = ?, catatan = ?, waktu = ? WHERE id_jadwalpanen = ?',
-            [id_kolam, nama_kolam, catatan, waktu, id_jadwalpanen]);
+        const [result] = await db.query('UPDATE jadwal_panen SET id_kolam = ?, tanggal = ?, catatan = ? WHERE id_jadwalpanen = ?',
+            [id_kolam, tanggal, catatan, id_jadwalpanen]);
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Jadwal panen not found' });
@@ -75,11 +74,11 @@ router.put('/:id_jadwalpanen', authMiddleware, async (req, res) => {
 
 router.put('/:id_jadwalpanen/:id_kolam', authMiddleware, async (req, res) => {
     const { id_kolam, id_jadwalpanen } = req.params;
-    const { nama_kolam, catatan, waktu } = req.body;
+    const { tanggal, catatan } = req.body;
 
     try {
-        const [result] = await db.query('UPDATE jadwal_panen SET id_kolam = ?, nama_kolam = ?, catatan = ?, waktu = ? WHERE id_jadwalpanen = ?',
-            [id_kolam, nama_kolam, catatan, waktu, id_jadwalpanen]);
+        const [result] = await db.query('UPDATE jadwal_panen SET id_kolam = ?, tanggal = ?, catatan = ? WHERE id_jadwalpanen = ?',
+            [id_kolam, tanggal, catatan, id_jadwalpanen]);
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Jadwal panen not found' });
@@ -97,7 +96,7 @@ router.delete('/:id_jadwalpanen', authMiddleware, async (req, res) => {
     const { id_jadwalpanen } = req.params;
 
     try {
-        const [result] = await db.query('DELETE FROM jadwal_panen WHERE id_jadwalpanen = ?', [id_jadwalpanen]);
+        const [result] = await db.query('UPDATE jadwal_panen SET status_aktif = "tidak aktif" WHERE id_jadwalpanen = ?', [id_jadwalpanen]);
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Jadwal panen not found' });
@@ -109,6 +108,5 @@ router.delete('/:id_jadwalpanen', authMiddleware, async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-
 
 module.exports = router;

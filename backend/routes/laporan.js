@@ -10,6 +10,46 @@ const checkRole = (req, res, next) => {
     next();
 };
 
+router.get('/', authMiddleware, checkRole, async (req, res) => {
+    const { groupBy } = req.query;
+
+    // Validasi parameter groupBy
+    if (!groupBy || !['day', 'month', 'year'].includes(groupBy)) {
+        return res.status(400).json({ error: 'Invalid groupBy parameter. Use day, month, or year.' });
+    }
+
+    let dateFormat;
+    switch (groupBy) {
+        case 'day':
+            dateFormat = '%Y-%m-%d'; // Format untuk hari
+            break;
+        case 'month':
+            dateFormat = '%Y-%m-01'; // Format untuk bulan
+            break;
+        case 'year':
+            dateFormat = '%Y-01-01'; // Format untuk tahun
+            break;
+        default:
+            return res.status(400).json({ error: 'Invalid groupBy parameter.' });
+    }
+
+    try {
+        const [rows] = await db.query(`
+            SELECT 
+                DATE_FORMAT(waktu, ?) AS waktu_trunc,
+                SUM(CASE WHEN kategori_laporan = 'pemasukan' THEN total ELSE 0 END) AS total_pemasukan,
+                SUM(CASE WHEN kategori_laporan = 'pengeluaran' THEN total ELSE 0 END) AS total_pengeluaran
+            FROM laporan
+            GROUP BY waktu_trunc
+            ORDER BY waktu_trunc
+        `, [dateFormat]);
+
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching laporan:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 router.get('/', authMiddleware, checkRole, async (req, res) => {
     try {

@@ -124,7 +124,7 @@ fun LoginScreen(navController: NavController,
         }
 
         // Content Layer
-        androidx.compose.foundation.lazy.LazyColumn(
+        androidx.compose.foundation.lazy.LazyColumn( 
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 36.dp)

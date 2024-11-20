@@ -33,24 +33,30 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.size
 import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
 import androidx.compose.ui.Alignment
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.TextButton
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavController
 import com.example.aquasmart10.Routes
+import com.example.aquasmart10.viewmodel.KolamViewModel
 
 @Composable
-fun KolamIkanBody(navController: NavController) {
+fun KolamIkanBody(navController: NavController, viewModel: KolamViewModel) {
     val customFontFamily = FontFamily(
         Font(R.font.bold, FontWeight.Bold),
         Font(R.font.regular, FontWeight.Normal)
     )
     val openAlertDialog = remember { mutableStateOf(false) }
+
+    val kolam by viewModel.kolam.observeAsState(emptyList())
 
     Column(
         modifier = Modifier
@@ -71,6 +77,12 @@ fun KolamIkanBody(navController: NavController) {
             Column(
                 modifier = Modifier.padding(top = 8.dp)
             ) {
+                LazyColumn {
+                    items(kolam) { item ->
+                        Text(text = "${item.lokasi_bioflok}, Age: ${item.diameter}")
+                        Text("oke")
+                    }
+                }
                 Text(
                     text = "Total Ikan Keseluruhan",
                     fontWeight = FontWeight.Normal,

@@ -24,6 +24,8 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.aquasmart10.R
 import com.example.aquasmart10.Routes
+import com.example.aquasmart10.viewmodel.KolamViewModel
 
 @Composable
 fun BodyMain(navController: NavController) {
@@ -158,7 +161,7 @@ fun BodyMain(navController: NavController) {
                                     )
                                 }
                                 Text(
-                                    text = "3",
+                                    text = "",
                                     fontSize = 30.sp,
                                     color = Color(0xFF5E7BF9),
                                     fontFamily = customFontFamily

@@ -44,9 +44,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalFocusManager
@@ -56,17 +59,24 @@ import androidx.navigation.NavController
 import com.example.aquasmart10.Routes
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
-
+import com.example.aquasmart10.viewmodel.LoginState
+import com.example.aquasmart10.viewmodel.LoginViewModel
 
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(navController: NavController,
+    viewModel: LoginViewModel = viewModel()
+) {
     // State declarations
-    val username = remember { mutableStateOf("") }
-    val password = remember { mutableStateOf("") }
-    val rememberMe = remember { mutableStateOf(false) }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var rememberMe by remember { mutableStateOf(false) }
     val focusManager = LocalFocusManager.current
+
+    val loginState by viewModel.loginState.collectAsState()
+    val user by viewModel.user.collectAsState()
 
     var submittedValueUsername by remember { mutableStateOf("") }
     var textValueUsername by remember { mutableStateOf("") }
@@ -77,6 +87,14 @@ fun LoginScreen(navController: NavController) {
     val image = painterResource(R.drawable.img_background)
 
     val passwordVisible = remember { mutableStateOf(false) }
+
+    LaunchedEffect(loginState) {
+        if (loginState is LoginState.Success) {
+            navController.navigate(Routes.BerandaActivity) {
+                popUpTo(Routes.LoginScreen) { inclusive = true }
+            }
+        }
+    }
 
 
     Box(
@@ -129,8 +147,8 @@ fun LoginScreen(navController: NavController) {
             // Username TextField
             item {
                 TextField(
-                    value = username.value,
-                    onValueChange = { username.value = it },
+                    value = email,
+                    onValueChange = { email = it },
                     label = { Text("Username") },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -163,8 +181,8 @@ fun LoginScreen(navController: NavController) {
             // Password TextField
             item {
                 TextField(
-                    value = password.value,
-                    onValueChange = { password.value = it },
+                    value = password,
+                    onValueChange = { password = it },
                     label = { Text("Password") },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -223,8 +241,8 @@ fun LoginScreen(navController: NavController) {
                         horizontalArrangement = Arrangement.Start
                     ) {
                         Checkbox(
-                            checked = rememberMe.value,
-                            onCheckedChange = { rememberMe.value = it }
+                            checked = rememberMe,
+                            onCheckedChange = { rememberMe = it }
                         )
                         Text(
                             text = "Ingat Saya",
@@ -246,22 +264,39 @@ fun LoginScreen(navController: NavController) {
                 val isPressed by interactionSource.collectIsPressedAsState()
 
                 Button(
-                    onClick = { navController.navigate(Routes.BerandaActivity) },
+                    onClick = { viewModel.login(email.toString(), password.toString()) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .border(4.dp, color = Color(0xFF5E7BF9), CircleShape)
                         .shadow(6.dp, CircleShape),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (isPressed) Color(0xFFE6E6E6) else Color.White,
-                        contentColor = Color(0xFF5E7BF9)
-                    ),
-                    interactionSource = interactionSource
+//                    colors = ButtonDefaults.buttonColors(
+//                        containerColor = if (isPressed) Color(0xFFE6E6E6) else Color.White,
+//                        contentColor = Color(0xFF5E7BF9)
+//                    ),
+                    interactionSource = interactionSource,
+                    enabled = email.isNotBlank() &&
+                            password.isNotBlank() &&
+                            loginState !is LoginState.Loading
                 ) {
+                    if (loginState is LoginState.Loading) {
+                        CircularProgressIndicator(
+                            color = Color.White,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    } else {
+                        Text(
+                            text = "Masuk",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(vertical = 9.dp)
+                        )
+                    }
+                }
+                if (loginState is LoginState.Error) {
                     Text(
-                        text = "Masuk",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(vertical = 9.dp)
+                        text = (loginState as LoginState.Error).message,
+                        color = Color.Red,
+                        modifier = Modifier.padding(top = 16.dp)
                     )
                 }
             }
@@ -272,7 +307,7 @@ fun LoginScreen(navController: NavController) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewLoginScreen() {
-    LoginScreen(navController = rememberNavController())}
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewLoginScreen() {
+//    LoginScreen(navController = rememberNavController())}

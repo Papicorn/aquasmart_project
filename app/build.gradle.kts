@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.runtime.livedata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -64,4 +65,11 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:1.5.4")
     implementation(platform("androidx.compose:compose-bom:2024.09.03"))
     implementation ("androidx.navigation:navigation-compose:2.8.3")
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // JSON Convert
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 }

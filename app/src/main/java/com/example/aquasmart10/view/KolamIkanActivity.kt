@@ -24,9 +24,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.aquasmart10.Routes
 import com.example.aquasmart10.component.NavbarTop
+import com.example.aquasmart10.viewmodel.KolamViewModel
 
 @Composable
-fun KolamIkanScreen(navController: NavController) {
+fun KolamIkanScreen(navController: NavController, viewModel: KolamViewModel) {
     Scaffold(
         bottomBar = {
             BottomNavigationBar(navController)
@@ -58,7 +59,7 @@ fun KolamIkanScreen(navController: NavController) {
         ) {
             NavbarTop(navController)
             HeaderKelola(navController, currentTab = "Kolam")
-            KolamIkanBody(navController)
+            KolamIkanBody(navController, viewModel)
         }
     }
 }

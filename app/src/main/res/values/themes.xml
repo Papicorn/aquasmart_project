@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.SplashAqua" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/primary</item>
+
+        <!-- Ikon splash screen -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_aquasmart</item>
+
+        <item name="android:windowSplashScreenBrandingImage" tools:ignore="NewApi">@drawable/branded</item>
+
+        <item name="postSplashScreenTheme">@style/Theme.AquasmartProjectBackup</item>
+
+        <!-- Durasi animasi ikon (opsional) -->
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+    </style>
+
+    <style name="Theme.AquasmartProjectBackup" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
